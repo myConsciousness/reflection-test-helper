@@ -25,6 +25,8 @@ import lombok.NonNull;
 import lombok.ToString;
 
 /**
+ * The class that represents the components of a parameter. It manages the types
+ * and values of parameters.
  *
  * @author Kato Shinya
  * @since 1.0.0

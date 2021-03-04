@@ -24,7 +24,7 @@ import lombok.NonNull;
 import lombok.ToString;
 
 /**
- *
+ * The class that manages the parameters for reflection.
  *
  * @author Kato Shinya
  * @since 1.0.0
@@ -39,15 +39,35 @@ final class ReflectionParameter implements Serializable {
      */
     private static final long serialVersionUID = 4405640637388930830L;
 
+    /**
+     * The parameters
+     */
     private final List<Parameter> parameters = new ArrayList<>(0);
 
-    public <T> void add(@NonNull Class<?> argumentType, @NonNull T argumentValue) {
-        this.parameters.add(Parameter.from(argumentType, argumentValue));
+    /**
+     * Add the parameter type and value.
+     *
+     * @param <T>            The type of parameter value
+     * @param parameterType  The type of parameter
+     * @param parameterValue The value of parameter
+     *
+     * @exception NullPointerException If {@code null} is passed as an argument
+     */
+    public <T> void add(@NonNull Class<?> parameterType, @NonNull T parameterValue) {
+        this.parameters.add(Parameter.from(parameterType, parameterValue));
     }
 
+    /**
+     * Returns the types of the set parameter as an array.
+     *
+     * @return The types of the set parameter
+     *
+     * @exception IllegalStateException If {@code parameter} is empty when this
+     *                                  {@link #getTypes()} method is called
+     */
     public Class<?>[] getTypes() {
 
-        if (this.parameters.isEmpty()) {
+        if (this.isEmpty()) {
             throw new IllegalStateException("No parameter is set. Parameter is required.");
         }
 
@@ -61,9 +81,17 @@ final class ReflectionParameter implements Serializable {
         return types;
     }
 
+    /**
+     * Returns the values of the set parameter as an array.
+     *
+     * @return The values of the set parameter
+     *
+     * @exception IllegalStateException If {@code parameter} is empty when this
+     *                                  {@link #getValues()} method is called
+     */
     public Object[] getValues() {
 
-        if (this.parameters.isEmpty()) {
+        if (this.isEmpty()) {
             throw new IllegalStateException("No parameter is set. Parameter is required.");
         }
 
@@ -77,6 +105,11 @@ final class ReflectionParameter implements Serializable {
         return values;
     }
 
+    /**
+     * Checks if the reflection parameter is empty.
+     *
+     * @return {@code true} if {@code parameter} is empty, otherwise {@code false}
+     */
     public boolean isEmpty() {
         return this.parameters.isEmpty();
     }

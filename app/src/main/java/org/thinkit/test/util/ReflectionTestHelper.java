@@ -39,8 +39,14 @@ public final class ReflectionTestHelper<T> implements Serializable {
      */
     private static final long serialVersionUID = 6572977559365139187L;
 
+    /**
+     * The refrection parameter
+     */
     private ReflectionParameter parameter;
 
+    /**
+     * The class
+     */
     private Class<?> clazz;
 
     public ReflectionTestHelper(@NonNull final Class<?> clazz) {
@@ -72,7 +78,7 @@ public final class ReflectionTestHelper<T> implements Serializable {
                 return (T) method.invoke(clazzInstance);
             }
 
-            Method method = this.clazz.getDeclaredMethod(methodName, this.parameter.getTypes());
+            final Method method = this.clazz.getDeclaredMethod(methodName, this.parameter.getTypes());
             method.setAccessible(true);
             return (T) method.invoke(clazzInstance, this.parameter.getValues());
 
