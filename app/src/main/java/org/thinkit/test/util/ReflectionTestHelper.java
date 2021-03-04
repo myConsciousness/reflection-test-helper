@@ -14,7 +14,14 @@
 
 package org.thinkit.test.util;
 
+import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.ToString;
 
 /**
@@ -24,6 +31,61 @@ import lombok.ToString;
  */
 @ToString
 @EqualsAndHashCode
-public final class ReflectionTestHelper {
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class ReflectionTestHelper<T> implements Serializable {
 
+    /**
+     * The serial version UID
+     */
+    private static final long serialVersionUID = 6572977559365139187L;
+
+    private ReflectionParameter parameter;
+
+    private Class<?> clazz;
+
+    public ReflectionTestHelper(@NonNull final Class<?> clazz) {
+        this.parameter = ReflectionParameter.newInstance();
+        this.clazz = clazz;
+    }
+
+    public T invokeStatic(@NonNull final String methodName) {
+        return this.invoke(methodName, true);
+    }
+
+    public T invoke(@NonNull final String methodName) {
+        return this.invoke(methodName, false);
+    }
+
+    @SuppressWarnings("unchecked")
+    private T invoke(@NonNull final String methodName, final boolean isStatic) {
+
+        if (methodName.isEmpty()) {
+            throw new IllegalArgumentException("Method name is required.");
+        }
+
+        try {
+            final Object clazzInstance = isStatic ? null : this.clazz.getDeclaredConstructor().newInstance();
+
+            if (this.parameter.isEmpty()) {
+                Method method = this.clazz.getDeclaredMethod(methodName);
+                method.setAccessible(true);
+                return (T) method.invoke(clazzInstance);
+            }
+
+            Method method = this.clazz.getDeclaredMethod(methodName, this.parameter.getTypes());
+            method.setAccessible(true);
+            return (T) method.invoke(clazzInstance, this.parameter.getValues());
+
+        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+                | InvocationTargetException | InstantiationException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public ReflectionTestHelper<T> add(@NonNull Class<?> argumentType, @NonNull Object argumentValue) {
+        this.parameter.add(argumentType, argumentValue);
+        return this;
+    }
 }
