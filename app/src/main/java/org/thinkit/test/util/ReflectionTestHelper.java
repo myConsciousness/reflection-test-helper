@@ -25,6 +25,25 @@ import lombok.NonNull;
 import lombok.ToString;
 
 /**
+ * The class that defines a function that makes it easier to use the reflection
+ * process when calling methods with private access modifiers. The functionality
+ * of this class was created specifically for external calls to private methods
+ * when testing a particular class.
+ *
+ * <p>
+ * When creating a new instance of the {@link ReflectionTestHelper} class, pass
+ * the class information of the class in which the method to be called is
+ * defined to the {@link #from(Class)} method. The generic type of the
+ * {@link ReflectionTestHelper} class should be the type returned by the method
+ * to be called.
+ *
+ * <p>
+ * If the argument of the method to be invoked is not required, you can execute
+ * the target method by creating a new instance of {@link ReflectionTestHelper}
+ * and then invoking the {@link #invoke(String)} method with the name of the
+ * method to be invoked as the argument. If the method to be called is static,
+ * call the {@link #invokeStatic(String)} method with the name of the method to
+ * be called as the argument.
  *
  * @author Kato Shinya
  * @since 1.0.0
@@ -49,9 +68,30 @@ public final class ReflectionTestHelper<T> implements Serializable {
      */
     private Class<?> clazz;
 
-    public ReflectionTestHelper(@NonNull final Class<?> clazz) {
+    /**
+     * The constructor.
+     *
+     * @param clazz The class in which the method to be called is defined
+     *
+     * @exception NullPointerException If {@code null} is passed as an argument
+     */
+    private ReflectionTestHelper(@NonNull final Class<?> clazz) {
         this.parameter = ReflectionParameter.newInstance();
         this.clazz = clazz;
+    }
+
+    /**
+     * Returns the new instance of {@link ReflectionTestHelper} based on the
+     * argument.
+     *
+     * @param <T>   The type returned by the method to be called
+     * @param clazz The class in which the method to be called is defined
+     * @return The new instance of {@link ReflectionTestHelper}
+     *
+     * @exception NullPointerException If {@code null} is passed as an argument
+     */
+    public static <T> ReflectionTestHelper<T> from(@NonNull final Class<?> clazz) {
+        return new ReflectionTestHelper<>(clazz);
     }
 
     public T invokeStatic(@NonNull final String methodName) {
@@ -84,10 +124,8 @@ public final class ReflectionTestHelper<T> implements Serializable {
 
         } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
                 | InvocationTargetException | InstantiationException e) {
-            e.printStackTrace();
+            throw new IllegalStateException(e);
         }
-
-        return null;
     }
 
     public ReflectionTestHelper<T> add(@NonNull Class<?> argumentType, @NonNull Object argumentValue) {
