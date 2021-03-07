@@ -14,9 +14,9 @@
 
 package org.thinkit.test.util;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Map;
@@ -76,12 +76,8 @@ public final class ReflectionParameterTest {
 
         @Test
         void testWhenParameterIsNotSet() {
-
-            final IllegalStateException exception = assertThrows(IllegalStateException.class,
-                    () -> ReflectionParameter.newInstance().getTypes());
-
-            assertNotNull(exception);
-            assertEquals("No parameter is set. Parameter is required.", exception.getMessage());
+            final Class<?>[] classes = assertDoesNotThrow(() -> ReflectionParameter.newInstance().getTypes());
+            assertNotNull(classes);
         }
     }
 
@@ -126,12 +122,8 @@ public final class ReflectionParameterTest {
 
         @Test
         void testWhenParameterIsNotSet() {
-
-            final IllegalStateException exception = assertThrows(IllegalStateException.class,
-                    () -> ReflectionParameter.newInstance().getValues());
-
-            assertNotNull(exception);
-            assertEquals("No parameter is set. Parameter is required.", exception.getMessage());
+            final Object[] objects = assertDoesNotThrow(() -> ReflectionParameter.newInstance().getValues());
+            assertNotNull(objects);
         }
     }
 
