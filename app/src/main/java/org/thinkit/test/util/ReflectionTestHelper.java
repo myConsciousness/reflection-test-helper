@@ -45,6 +45,11 @@ import lombok.ToString;
  * call the {@link #invokeStatic(String)} method with the name of the method to
  * be called as the argument.
  *
+ * <p>
+ * If the method to be called requires the specification of arguments, call the
+ * {@link #add(Class, Object)} method and add the argument types and values that
+ * need to be set.
+ *
  * @author Kato Shinya
  * @since 1.0.0
  */
@@ -94,26 +99,18 @@ public final class ReflectionTestHelper<T> implements Serializable {
         return new ReflectionTestHelper<>(clazz);
     }
 
-    public T invokeStatic(@NonNull final String methodName) {
-        return this.invoke(methodName, true);
-    }
-
-    public T invoke(@NonNull final String methodName) {
-        return this.invoke(methodName, false);
-    }
-
     @SuppressWarnings("unchecked")
-    private T invoke(@NonNull final String methodName, final boolean isStatic) {
+    public T invoke(@NonNull final String methodName) {
 
         if (methodName.isEmpty()) {
-            throw new IllegalArgumentException("Method name is required.");
+            throw new IllegalArgumentException("Method name must not be empty.");
         }
 
         try {
-            final Object clazzInstance = isStatic ? null : this.clazz.getDeclaredConstructor().newInstance();
+            final Object clazzInstance = this.clazz.getDeclaredConstructor().newInstance();
 
             if (this.parameter.isEmpty()) {
-                Method method = this.clazz.getDeclaredMethod(methodName);
+                final Method method = this.clazz.getDeclaredMethod(methodName);
                 method.setAccessible(true);
                 return (T) method.invoke(clazzInstance);
             }
