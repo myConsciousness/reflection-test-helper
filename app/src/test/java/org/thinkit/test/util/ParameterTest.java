@@ -16,6 +16,7 @@ package org.thinkit.test.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -110,6 +111,22 @@ public final class ParameterTest {
             for (final String value : values) {
                 assertEquals("test", value);
             }
+        }
+
+        @Test
+        void testWhenParametrTypeIsNull() {
+
+            final NullPointerException exception = assertThrows(NullPointerException.class,
+                    () -> Parameter.from(null, "test"));
+            assertNotNull(exception);
+        }
+
+        @Test
+        void testWhenParametrValueIsNull() {
+
+            final NullPointerException exception = assertThrows(NullPointerException.class,
+                    () -> Parameter.from(String.class, null));
+            assertNotNull(exception);
         }
     }
 }
