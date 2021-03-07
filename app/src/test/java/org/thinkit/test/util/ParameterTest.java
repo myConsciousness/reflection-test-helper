@@ -36,6 +36,10 @@ import org.junit.jupiter.params.provider.ValueSource;
  */
 public final class ParameterTest {
 
+    /**
+     * The nested class for {@link Parameter#getType()} and
+     * {@link Parameter#getValue()} methods.
+     */
     @Nested
     class TestGetterMethod {
 
