@@ -53,6 +53,5 @@ final class Parameter implements Serializable {
      * The value
      */
     @Getter
-    @NonNull
     private Object value;
 }

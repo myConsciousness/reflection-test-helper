@@ -14,6 +14,7 @@
 
 package org.thinkit.test.util;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -127,10 +128,7 @@ public final class ParameterTest {
 
         @Test
         void testWhenParametrValueIsNull() {
-
-            final NullPointerException exception = assertThrows(NullPointerException.class,
-                    () -> Parameter.from(String.class, null));
-            assertNotNull(exception);
+            assertDoesNotThrow(() -> Parameter.from(String.class, null));
         }
     }
 }
