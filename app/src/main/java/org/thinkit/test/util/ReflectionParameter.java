@@ -61,14 +61,11 @@ final class ReflectionParameter implements Serializable {
      * Returns the types of the set parameter as an array.
      *
      * @return The types of the set parameter
-     *
-     * @exception IllegalStateException If {@code parameter} is empty when this
-     *                                  {@link #getTypes()} method is called
      */
     public Class<?>[] getTypes() {
 
         if (this.isEmpty()) {
-            throw new IllegalStateException("No parameter is set. Parameter is required.");
+            return new Class<?>[0];
         }
 
         final int parameterSize = this.parameters.size();
@@ -85,14 +82,11 @@ final class ReflectionParameter implements Serializable {
      * Returns the values of the set parameter as an array.
      *
      * @return The values of the set parameter
-     *
-     * @exception IllegalStateException If {@code parameter} is empty when this
-     *                                  {@link #getValues()} method is called
      */
     public Object[] getValues() {
 
         if (this.isEmpty()) {
-            throw new IllegalStateException("No parameter is set. Parameter is required.");
+            return new Object[0];
         }
 
         final int paramaterSize = this.parameters.size();

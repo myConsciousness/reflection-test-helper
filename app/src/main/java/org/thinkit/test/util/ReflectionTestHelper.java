@@ -18,6 +18,8 @@ import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import org.apache.commons.lang3.StringUtils;
+
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -32,21 +34,18 @@ import lombok.ToString;
  *
  * <p>
  * When creating a new instance of the {@link ReflectionTestHelper} class, pass
- * the class information of the class in which the method to be called is
+ * the class information of the class in which the method to be invoked is
  * defined to the {@link #from(Class)} method. The generic type of the
  * {@link ReflectionTestHelper} class should be the type returned by the method
- * to be called.
+ * to be invoked.
  *
  * <p>
- * If the argument of the method to be invoked is not required, you can execute
- * the target method by creating a new instance of {@link ReflectionTestHelper}
- * and then invoking the {@link #invoke(String)} method with the name of the
- * method to be invoked as the argument. If the method to be called is static,
- * call the {@link #invokeStatic(String)} method with the name of the method to
- * be called as the argument.
+ * Then you can execute the target method by creating a new instance of
+ * {@link ReflectionTestHelper} and then invoking the {@link #invoke(String)}
+ * method with the name of the method to be invoked as the argument.
  *
  * <p>
- * If the method to be called requires the specification of arguments, call the
+ * If the method to be invoked requires the specification of arguments, call the
  * {@link #add(Class, Object)} method and add the argument types and values that
  * need to be set.
  *
@@ -76,7 +75,7 @@ public final class ReflectionTestHelper<T> implements Serializable {
     /**
      * The constructor.
      *
-     * @param clazz The class in which the method to be called is defined
+     * @param clazz The class in which the method to be invoked is defined
      *
      * @exception NullPointerException If {@code null} is passed as an argument
      */
@@ -89,8 +88,8 @@ public final class ReflectionTestHelper<T> implements Serializable {
      * Returns the new instance of {@link ReflectionTestHelper} based on the
      * argument.
      *
-     * @param <T>   The type returned by the method to be called
-     * @param clazz The class in which the method to be called is defined
+     * @param <T>   The type returned by the method to be invoked
+     * @param clazz The class in which the method to be invoked is defined
      * @return The new instance of {@link ReflectionTestHelper}
      *
      * @exception NullPointerException If {@code null} is passed as an argument
@@ -99,34 +98,129 @@ public final class ReflectionTestHelper<T> implements Serializable {
         return new ReflectionTestHelper<>(clazz);
     }
 
+    /**
+     * Invokes the indicated method by reflection. The value defined in the target
+     * method to be called in the reflection will be returned.
+     *
+     * @param methodName The method name to invoked by reflection
+     * @return The value returned from the method name executed in the reflection
+     *         process
+     *
+     * @exception IllegalArgumentException If the argument {@code methodName} is
+     *                                     {@code null} or empty
+     * @exception IllegalStateException    If an error occurs in the reflection
+     *                                     process
+     */
     @SuppressWarnings("unchecked")
-    public T invoke(@NonNull final String methodName) {
+    public T invoke(final String methodName) {
 
-        if (methodName.isEmpty()) {
+        if (StringUtils.isEmpty(methodName)) {
             throw new IllegalArgumentException("Method name must not be empty.");
         }
 
         try {
-            final Object clazzInstance = this.clazz.getDeclaredConstructor().newInstance();
-
-            if (this.parameter.isEmpty()) {
-                final Method method = this.clazz.getDeclaredMethod(methodName);
-                method.setAccessible(true);
-                return (T) method.invoke(clazzInstance);
-            }
-
-            final Method method = this.clazz.getDeclaredMethod(methodName, this.parameter.getTypes());
-            method.setAccessible(true);
-            return (T) method.invoke(clazzInstance, this.parameter.getValues());
-
+            return (T) this.getMethod(methodName).invoke(this.getClassInstance(), this.parameter.getValues());
         } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
                 | InvocationTargetException | InstantiationException e) {
             throw new IllegalStateException(e);
         }
     }
 
+    /**
+     * Adds the argument types and values defined for the target method to be
+     * invoked in reflection. Argument types are not allowed to be {@code null}, but
+     * argument values are allowed to be {@code null}.
+     *
+     * @param argumentType  The type of argument
+     * @param argumentValue The value of argument
+     * @return this instance
+     *
+     * @exception NullPointerException If the argument {@code argumentType} is null
+     */
     public ReflectionTestHelper<T> add(@NonNull Class<?> argumentType, Object argumentValue) {
         this.parameter.add(argumentType, argumentValue);
         return this;
+    }
+
+    /**
+     * Returns the instance of the class in which the method to be invoked by
+     * reflection is defined.
+     *
+     * @return The instance of the class in which the method to be invoked by
+     *         reflection is defined
+     *
+     * @throws InstantiationException    If the class that declares the underlying
+     *                                   constructor represents an abstract class
+     * @throws IllegalAccessException    If this {@code Constructor} object is
+     *                                   enforcing Java language access control and
+     *                                   the underlying constructor is inaccessible
+     * @throws IllegalArgumentException  If the number of actual and formal
+     *                                   parameters differ; if an unwrapping
+     *                                   conversion for primitive arguments fails;
+     *                                   or if, after possible unwrapping, a
+     *                                   parameter value cannot be converted to the
+     *                                   corresponding formal parameter type by a
+     *                                   method invocation conversion; if this
+     *                                   constructor pertains to an enum type
+     * @throws InvocationTargetException If the underlying constructor throws an
+     *                                   exception
+     * @throws NoSuchMethodException     If a matching method is not found
+     * @throws SecurityException         If a security manager, <i>s</i>, is present
+     *                                   and any of the following conditions is met:
+     *
+     *                                   <ul>
+     *                                   <li>the caller's class loader is not the
+     *                                   same as the class loader of this class and
+     *                                   invocation of
+     *                                   {@link SecurityManager#checkPermission
+     *                                   s.checkPermission} method with
+     *                                   {@code RuntimePermission("accessDeclaredMembers")}
+     *                                   denies access to the declared constructor
+     *
+     *                                   <li>the caller's class loader is not the
+     *                                   same as or an ancestor of the class loader
+     *                                   for the current class and invocation of
+     *                                   {@link SecurityManager#checkPackageAccess
+     *                                   s.checkPackageAccess()} denies access to
+     *                                   the package of this class
+     *                                   </ul>
+     */
+    private Object getClassInstance() throws InstantiationException, IllegalAccessException, IllegalArgumentException,
+            InvocationTargetException, NoSuchMethodException, SecurityException {
+        return this.clazz.getDeclaredConstructor().newInstance();
+    }
+
+    /**
+     * Returns the method object to be invoked by reflection.
+     *
+     * @param methodName The method name to be invoked by reflection
+     * @return The method object to be invoked
+     *
+     * @exception NullPointerException If {@code null} is passed as an argument
+     * @throws NoSuchMethodException If a matching method is not found
+     * @throws SecurityException     If a security manager, <i>s</i>, is present and
+     *                               any of the following conditions is met:
+     *
+     *                               <ul>
+     *                               <li>the caller's class loader is not the same
+     *                               as the class loader of this class and
+     *                               invocation of
+     *                               {@link SecurityManager#checkPermission
+     *                               s.checkPermission} method with
+     *                               {@code RuntimePermission("accessDeclaredMembers")}
+     *                               denies access to the declared constructor
+     *
+     *                               <li>the caller's class loader is not the same
+     *                               as or an ancestor of the class loader for the
+     *                               current class and invocation of
+     *                               {@link SecurityManager#checkPackageAccess
+     *                               s.checkPackageAccess()} denies access to the
+     *                               package of this class
+     *                               </ul>
+     */
+    private Method getMethod(@NonNull final String methodName) throws NoSuchMethodException, SecurityException {
+        final Method method = this.clazz.getDeclaredMethod(methodName, this.parameter.getTypes());
+        method.setAccessible(true);
+        return method;
     }
 }

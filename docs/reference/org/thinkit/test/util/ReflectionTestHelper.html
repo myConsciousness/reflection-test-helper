@@ -93,21 +93,18 @@ implements <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base
 
  <p>
  When creating a new instance of the <a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス"><code>ReflectionTestHelper</code></a> class, pass
- the class information of the class in which the method to be called is
+ the class information of the class in which the method to be invoked is
  defined to the <a href="#from(java.lang.Class)"><code>from(Class)</code></a> method. The generic type of the
  <a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス"><code>ReflectionTestHelper</code></a> class should be the type returned by the method
- to be called.
+ to be invoked.
 
  <p>
- If the argument of the method to be invoked is not required, you can execute
- the target method by creating a new instance of <a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス"><code>ReflectionTestHelper</code></a>
- and then invoking the <a href="#invoke(java.lang.String)"><code>invoke(String)</code></a> method with the name of the
- method to be invoked as the argument. If the method to be called is static,
- call the <code>#invokeStatic(String)</code> method with the name of the method to
- be called as the argument.
+ Then you can execute the target method by creating a new instance of
+ <a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス"><code>ReflectionTestHelper</code></a> and then invoking the <a href="#invoke(java.lang.String)"><code>invoke(String)</code></a>
+ method with the name of the method to be invoked as the argument.
 
  <p>
- If the method to be called requires the specification of arguments, call the
+ If the method to be invoked requires the specification of arguments, call the
  <a href="#add(java.lang.Class,java.lang.Object)"><code>add(Class, Object)</code></a> method and add the argument types and values that
  need to be set.</div>
 <dl class="notes">
@@ -139,7 +136,10 @@ implements <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base
 <td class="col-first"><code><a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス">ReflectionTestHelper</a>&lt;<a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a>&gt;</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#add(java.lang.Class,java.lang.Object)">add</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Class.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Class</a>&lt;?&gt;&nbsp;argumentType,
 <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Object.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Object</a>&nbsp;argumentValue)</code></th>
-<td class="col-last">&nbsp;</td>
+<td class="col-last">
+<div class="block">Adds the argument types and values defined for the target method to be
+ invoked in reflection.</div>
+</td>
 </tr>
 <tr class="row-color" id="i1">
 <td class="col-first"><code>boolean</code></td>
@@ -161,8 +161,10 @@ implements <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base
 </tr>
 <tr class="alt-color" id="i4">
 <td class="col-first"><code><a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a></code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#invoke(java.lang.String)">invoke</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;methodName)</code></th>
-<td class="col-last">&nbsp;</td>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#invoke(java.lang.String)">invoke</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;methodName)</code></th>
+<td class="col-last">
+<div class="block">Invokes the indicated method by reflection.</div>
+</td>
 </tr>
 <tr class="row-color" id="i5">
 <td class="col-first"><code><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a></code></td>
@@ -196,9 +198,9 @@ implements <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base
  argument.</div>
 <dl class="notes">
 <dt>型パラメータ:</dt>
-<dd><code>T</code> - The type returned by the method to be called</dd>
+<dd><code>T</code> - The type returned by the method to be invoked</dd>
 <dt>パラメータ:</dt>
-<dd><code>clazz</code> - The class in which the method to be called is defined</dd>
+<dd><code>clazz</code> - The class in which the method to be invoked is defined</dd>
 <dt>戻り値:</dt>
 <dd>The new instance of <a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス"><code>ReflectionTestHelper</code></a></dd>
 <dt>例外:</dt>
@@ -209,8 +211,21 @@ implements <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base
 <li>
 <section class="detail" id="invoke(java.lang.String)">
 <h3>invoke</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a></span>&nbsp;<span class="member-name">invoke</span>&#8203;(<span class="parameters">@NonNull
-@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;methodName)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a></span>&nbsp;<span class="member-name">invoke</span>&#8203;(<span class="parameters"><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;methodName)</span></div>
+<div class="block">Invokes the indicated method by reflection. The value defined in the target
+ method to be called in the reflection will be returned.</div>
+<dl class="notes">
+<dt>パラメータ:</dt>
+<dd><code>methodName</code> - The method name to invoked by reflection</dd>
+<dt>戻り値:</dt>
+<dd>The value returned from the method name executed in the reflection
+         process</dd>
+<dt>例外:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/IllegalArgumentException.html" title="java.lang内のクラスまたはインタフェース" class="external-link">IllegalArgumentException</a></code> - If the argument <code>methodName</code> is
+                                     <code>null</code> or empty</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/IllegalStateException.html" title="java.lang内のクラスまたはインタフェース" class="external-link">IllegalStateException</a></code> - If an error occurs in the reflection
+                                     process</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -219,6 +234,18 @@ implements <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス">ReflectionTestHelper</a>&lt;<a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a>&gt;</span>&nbsp;<span class="member-name">add</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Class.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Class</a>&lt;?&gt;&nbsp;argumentType,
 <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Object.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Object</a>&nbsp;argumentValue)</span></div>
+<div class="block">Adds the argument types and values defined for the target method to be
+ invoked in reflection. Argument types are not allowed to be <code>null</code>, but
+ argument values are allowed to be <code>null</code>.</div>
+<dl class="notes">
+<dt>パラメータ:</dt>
+<dd><code>argumentType</code> - The type of argument</dd>
+<dd><code>argumentValue</code> - The value of argument</dd>
+<dt>戻り値:</dt>
+<dd>this instance</dd>
+<dt>例外:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/NullPointerException.html" title="java.lang内のクラスまたはインタフェース" class="external-link">NullPointerException</a></code> - If the argument <code>argumentType</code> is null</dd>
+</dl>
 </section>
 </li>
 <li>
