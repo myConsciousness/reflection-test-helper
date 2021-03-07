@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ * The test data set of static method.
  *
  * @author Kato Shinya
  * @since 1.0.0
@@ -37,15 +37,26 @@ final class ReflectionStaticTestDataSet {
         return "success";
     }
 
+    /**
+     * Returns the string {@code "success"} if the argument {@code arg} is not
+     * {@code null} and not empty, otherwise {@code "failure"} .
+     *
+     * @param arg The argument
+     * @return {@code "success"} if the argument {@code arg} is not {@code null} and
+     *         not empty, otherwise {@code "failure"}
+     */
     @SuppressWarnings("unused")
     private static String returnStringWithArgument(String arg) {
-        return arg.isEmpty() ? "failure" : "success";
+        return arg == null || arg.isEmpty() ? "failure" : "success";
     }
 
     /**
-     * 複数の引数を受け文字列型として <code>"success"</code> を返却するメソッドです。
+     * Returns the string {@code "success"} with some arguments.
      *
-     * @return <code>"success"</code>
+     * @param arg1 The argument 1
+     * @param arg2 The argument 2
+     * @param arg3 The argument 3
+     * @return The string {@code "success"}
      */
     @SuppressWarnings("unused")
     private static String returnStringWithArguments(String arg1, int arg2, boolean arg3) {
@@ -53,9 +64,9 @@ final class ReflectionStaticTestDataSet {
     }
 
     /**
-     * 引数なしで数値型として <code>1</code> を返却するメソッドです。
+     * Returns the int {@code 1} without the argument.
      *
-     * @return <code>1</code>
+     * @return The int {@code 1}
      */
     @SuppressWarnings("unused")
     private static int returnIntegerWithNoArgument() {
@@ -63,11 +74,10 @@ final class ReflectionStaticTestDataSet {
     }
 
     /**
-     * 引数を受け数値型として <code>1</code> を返却するメソッドです。<br>
-     * 渡された真偽値の値が <code>false</code> の場合は <code>0</code> を返却します。
+     * Returns the int {@code 1} if the boolean {@code true} , otherwise {@code 0} .
      *
-     * @return 渡された真偽値の値が <code>false</code> の場合は <code>0</code> 、それ以外は
-     *         <code>1</code>
+     * @param arg The argument
+     * @return The int {@code 1} if the boolean {@code true} , otherwise {@code 0}
      */
     @SuppressWarnings("unused")
     private static int returnIntegerWithArgument(boolean arg) {
@@ -75,9 +85,12 @@ final class ReflectionStaticTestDataSet {
     }
 
     /**
-     * 複数の引数を受け数値型として <code>1</code> を返却するメソッドです。
+     * Returns the int {@code 1} with some arguments.
      *
-     * @return <code>1</code>
+     * @param arg1 The argument 1
+     * @param arg2 The argument 2
+     * @param arg3 The argument 3
+     * @return The int {@code 1}
      */
     @SuppressWarnings("unused")
     private static int returnIntegerWithArguments(int arg1, String arg2, boolean arg3) {
@@ -85,9 +98,9 @@ final class ReflectionStaticTestDataSet {
     }
 
     /**
-     * 引数なしで真偽値として <code>true</code> を返却するメソッドです。
+     * Returns the boolean {@code true} without the argument.
      *
-     * @return <code>true</code>
+     * @return The boolean {@code true}
      */
     @SuppressWarnings("unused")
     private static boolean returnBooleanWithNoArgument() {
@@ -95,11 +108,12 @@ final class ReflectionStaticTestDataSet {
     }
 
     /**
-     * 引数を受け真偽値として <code>true</code> を返却するメソッドです。<br>
-     * 渡された数値が <code>1</code> 以外の場合は <code>false</code> を返却します。
+     * Returns the boolean {@code true} if the argument is equals to the int
+     * {@code 1} , otherwise {@code false} .
      *
-     * @return 渡された数値が <code>1</code> の場合は <code>true</code> 、それ以外は
-     *         <code>false</code>
+     * @param arg The argument
+     * @return The boolean {@code true} if the argument is equals to the int
+     *         {@code 1} , otherwise {@code false}
      */
     @SuppressWarnings("unused")
     private static boolean returnBooleanWithArgument(int arg) {
@@ -107,9 +121,12 @@ final class ReflectionStaticTestDataSet {
     }
 
     /**
-     * 複数の引数を受け数値型として <code>1</code> を返却するメソッドです。
+     * Returns the boolean {@code true} with some arguments.
      *
-     * @return <code>true</code>
+     * @param arg1 The argument 1
+     * @param arg2 The argument 2
+     * @param arg3 The argument 3
+     * @return The boolean {@code true}
      */
     @SuppressWarnings("unused")
     private static boolean returnBooleanWithArguments(int arg1, String arg2, boolean arg3) {
@@ -117,9 +134,14 @@ final class ReflectionStaticTestDataSet {
     }
 
     /**
-     * 渡された複数の引数を格納したリストを返却します。
+     * Returns the list based on the arguments.
      *
-     * @return 渡された全引数を格納したリスト
+     * @param arg1 The argument 1
+     * @param arg2 The argument 2
+     * @param arg3 The argument 3
+     * @return The list based on the arguments
+     *
+     * @exception NullPointerException If {@code null} is passed as an argument
      */
     @SuppressWarnings("unused")
     private static List<String> returnListWithArguments(String arg1, String arg2, String arg3) {
@@ -131,11 +153,14 @@ final class ReflectionStaticTestDataSet {
     }
 
     /**
-     * 渡された複数の引数を格納したマップを返却します。<br>
-     * マップに格納された値の各キーは <code>n = 1</code> から <code>"result" + n</code>
-     * <code>"result3"/code> まで設定されます。
+     * Returns the map based on the arguments.
      *
-     * @return 渡された全引数を格納したマップ
+     * @param arg1 The argument 1
+     * @param arg2 The argument 2
+     * @param arg3 The argument 3
+     * @return The map based on the arguments
+     *
+     * @exception NullPointerException If {@code null} is passed as an argument
      */
     @SuppressWarnings("unused")
     private static Map<String, Integer> returnMapWithArguments(int arg1, int arg2, int arg3) {

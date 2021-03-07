@@ -35,8 +35,14 @@ import lombok.RequiredArgsConstructor;
  */
 public final class ReflectionTestHelperTest {
 
+    /**
+     * The expected success value
+     */
     private static final String STR_SUCCESS = "success";
 
+    /**
+     * The expected failure value
+     */
     private static final String STR_FAILURE = "failure";
 
     @Nested
