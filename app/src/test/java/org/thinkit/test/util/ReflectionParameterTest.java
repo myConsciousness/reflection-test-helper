@@ -75,7 +75,7 @@ public final class ReflectionParameterTest {
         }
 
         @Test
-        void testWhenParameterIsEmpty() {
+        void testWhenParameterIsNotSet() {
 
             final IllegalStateException exception = assertThrows(IllegalStateException.class,
                     () -> ReflectionParameter.newInstance().getTypes());
@@ -92,7 +92,7 @@ public final class ReflectionParameterTest {
     class TestGetValues {
 
         @ParameterizedTest
-        @ValueSource(strings = { "", " ", "　", "t", "test" })
+        @ValueSource(strings = { "", " ", "　", "t", "test", "/!*;=" })
         void testWhenParameterHasStringValue(final String parameter) {
 
             final ReflectionParameter parameterEntity = ReflectionParameter.newInstance();
@@ -125,7 +125,7 @@ public final class ReflectionParameterTest {
         }
 
         @Test
-        void testWhenParameterIsEmpty() {
+        void testWhenParameterIsNotSet() {
 
             final IllegalStateException exception = assertThrows(IllegalStateException.class,
                     () -> ReflectionParameter.newInstance().getValues());

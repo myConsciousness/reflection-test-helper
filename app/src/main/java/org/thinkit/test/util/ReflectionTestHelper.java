@@ -125,7 +125,7 @@ public final class ReflectionTestHelper<T> implements Serializable {
         }
     }
 
-    public ReflectionTestHelper<T> add(@NonNull Class<?> argumentType, @NonNull Object argumentValue) {
+    public ReflectionTestHelper<T> add(@NonNull Class<?> argumentType, Object argumentValue) {
         this.parameter.add(argumentType, argumentValue);
         return this;
     }
