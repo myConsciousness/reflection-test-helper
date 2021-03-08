@@ -7,6 +7,7 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
 - [What is it?](#what-is-it)
@@ -20,7 +21,9 @@
 
 ## What is it?
 
-## Benefits
+The `Reflection Test Helper` was designed and implemented to provide a simple and cool way to write reflections, which are verbose and relatively difficult to implement. This feature is especially useful when testing a specific class with limited access features such as private access modifiers.
+
+The `Reflection Test Helper` is easy to use; all you need to be aware of when using it is the class in which the method to be reflected is defined, and the name and arguments of the method to be invoked in the reflection.
 
 ## How To Use
 
