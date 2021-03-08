@@ -7,6 +7,7 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
 - [What is it?](#what-is-it)
@@ -66,6 +67,48 @@ repositories {
 dependencies {
     implementation 'org.thinkit.test.util:reflection-test-helper:v1.0.2'
 }
+```
+
+### 2. Import `Reflection Test Helper`
+
+```java
+import org.thinkit.test.util.ReflectionTestHelper;
+```
+
+### 3. Create new instance of `ReflectionTestHelper`
+
+```java
+// If the method to be invoked is in ConcreteClass, and it returns the string
+final ReflectionTestHelper<String> reflectionTestHelper = ReflectionTestHelper.from(ConcreteClass.class);
+```
+
+> **_Note:_**</br>
+> The static constructor of the ReflectionTestHelper class, the from method, should be passed the class object of the class in which the method to be invoked by reflection is defined as an argument.
+> Also, the ReflectionTestHelper generic should specify the type of the return value of the method to be called in reflection.
+
+### 4. Invoke method
+
+By executing the invoke method with the name of the method to be called in reflection as an argument, the specified method can be executed in reflection.
+
+If you need to specify arguments for the method to be called by reflection, you can use [this way](###5-invoke-method-with-the-argument) to specify the arguments.
+
+```java
+// Specify the name of the method to be invoked as an argument
+final String result = reflectionTestHelper.invoke("methodName");
+```
+
+### 5. Invoke method with the argument
+
+By calling the add method with **_the first argument as the argument type_** and **_the second argument as the argument value_**, you can specify the arguments required to invoke the target method to be invoked by reflection.
+
+```java
+
+// Set the arguments required for method execution
+reflectionTestHelper.add(String.class, "firstArgument");
+reflectionTestHelper.add(Integer.class, 1000);
+
+// Specify the name of the method to be invoked as an argument
+final String result = reflectionTestHelper.invoke("methodNameWithArgument");
 ```
 
 ## License
