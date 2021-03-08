@@ -7,15 +7,12 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
 - [What is it?](#what-is-it)
 - [How To Use](#how-to-use)
   - [1. Add the dependencies](#1-add-the-dependencies)
-  - [2. Import `Reflection Test Helper`](#2-import-reflection-test-helper)
-  - [3. Create new instance of `ReflectionTestHelper`](#3-create-new-instance-of-reflectiontesthelper)
-  - [4. Invoke method](#4-invoke-method)
-  - [5. Invoke method with the argument](#5-invoke-method-with-the-argument)
 - [License](#license)
 - [More Information](#more-information)
 
@@ -93,7 +90,7 @@ final ReflectionTestHelper<String> reflectionTestHelper = ReflectionTestHelper.f
 
 By executing the invoke method with the name of the method to be called in reflection as an argument, the specified method can be executed in reflection.
 
-If you need to specify arguments for the method to be called by reflection, you can use [this way](###5-invoke-method-with-the-argument) to specify the arguments.
+If you need to specify arguments for the method to be called by reflection, you can use [this way](#5-invoke-method-with-the-argument) to specify the arguments.
 
 ```java
 // Specify the name of the method to be invoked as an argument
