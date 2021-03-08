@@ -27,6 +27,7 @@ publishing {
         version = gitVersion()
 
         gpr(MavenPublication) {
+            artifactId = 'reflection-test-helper'
             from(components.java)
         }
     }
