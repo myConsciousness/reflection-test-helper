@@ -41,13 +41,14 @@ import lombok.ToString;
  *
  * <p>
  * Then you can execute the target method by creating a new instance of
- * {@link ReflectionTestHelper} and then invoking the {@link #invoke(String)}
- * method with the name of the method to be invoked as the argument.
+ * {@link ReflectionTestHelper} and then invoking the
+ * {@link #invokeMethod(String)} method with the name of the method to be
+ * invoked as the argument.
  *
  * <p>
  * If the method to be invoked requires the specification of arguments, call the
- * {@link #add(Class, Object)} method and add the argument types and values that
- * need to be set.
+ * {@link #addArgument(Class, Object)} method and add the argument types and
+ * values that need to be set.
  *
  * @author Kato Shinya
  * @since 1.0.0
@@ -112,7 +113,7 @@ public final class ReflectionTestHelper<T> implements Serializable {
      *                                     process
      */
     @SuppressWarnings("unchecked")
-    public T invoke(final String methodName) {
+    public T invokeMethod(final String methodName) {
 
         if (StringUtils.isEmpty(methodName)) {
             throw new IllegalArgumentException("Method name must not be empty.");
@@ -137,7 +138,7 @@ public final class ReflectionTestHelper<T> implements Serializable {
      *
      * @exception NullPointerException If the argument {@code argumentType} is null
      */
-    public ReflectionTestHelper<T> add(@NonNull Class<?> argumentType, Object argumentValue) {
+    public ReflectionTestHelper<T> addArgument(@NonNull Class<?> argumentType, Object argumentValue) {
         this.parameter.add(argumentType, argumentValue);
         return this;
     }

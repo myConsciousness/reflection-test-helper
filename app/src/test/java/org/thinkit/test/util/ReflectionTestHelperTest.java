@@ -45,13 +45,17 @@ public final class ReflectionTestHelperTest {
      */
     private static final String STR_FAILURE = "failure";
 
+    /**
+     * The nested class for {@link ReflectionTestHelper#invokeMethod(String)}
+     * method.
+     */
     @Nested
-    class TestInvoke {
+    class TestInvokeMethod {
 
         @Test
         void testReturnStringWithNoArgument() {
             final ReflectionTestHelper<String> reflection = ReflectionTestHelper.from(ReflectionTestDataSet.class);
-            final String actualResult = reflection.invoke(TestMethod.RETURN_STRING_WITH_NO_ARGUMENT.getName());
+            final String actualResult = reflection.invokeMethod(TestMethod.RETURN_STRING_WITH_NO_ARGUMENT.getName());
 
             assertNotNull(actualResult);
             assertTrue(!actualResult.isEmpty());
@@ -61,8 +65,8 @@ public final class ReflectionTestHelperTest {
         @Test
         void testReturnStringSuccessWithArgument() {
             final ReflectionTestHelper<String> reflection = ReflectionTestHelper.from(ReflectionTestDataSet.class);
-            final String actualResult = reflection.add(String.class, "test")
-                    .invoke(TestMethod.RETURN_STRING_WITH_ARGUMENT.getName());
+            final String actualResult = reflection.addArgument(String.class, "test")
+                    .invokeMethod(TestMethod.RETURN_STRING_WITH_ARGUMENT.getName());
 
             assertNotNull(actualResult);
             assertTrue(!actualResult.isEmpty());
@@ -72,8 +76,8 @@ public final class ReflectionTestHelperTest {
         @Test
         void testReturnStringFailureWithArgument() {
             final ReflectionTestHelper<String> reflection = ReflectionTestHelper.from(ReflectionTestDataSet.class);
-            final String actualResult = reflection.add(String.class, "")
-                    .invoke(TestMethod.RETURN_STRING_WITH_ARGUMENT.getName());
+            final String actualResult = reflection.addArgument(String.class, "")
+                    .invokeMethod(TestMethod.RETURN_STRING_WITH_ARGUMENT.getName());
 
             assertNotNull(actualResult);
             assertTrue(!actualResult.isEmpty());
@@ -83,8 +87,8 @@ public final class ReflectionTestHelperTest {
         @Test
         void testReturnStringWithArguments() {
             final ReflectionTestHelper<String> reflection = ReflectionTestHelper.from(ReflectionTestDataSet.class);
-            reflection.add(String.class, "").add(int.class, 0).add(boolean.class, true);
-            final String actualResult = reflection.invoke(TestMethod.RETURN_STRING_WITH_ARGUMENTS.getName());
+            reflection.addArgument(String.class, "").addArgument(int.class, 0).addArgument(boolean.class, true);
+            final String actualResult = reflection.invokeMethod(TestMethod.RETURN_STRING_WITH_ARGUMENTS.getName());
 
             assertNotNull(actualResult);
             assertTrue(!actualResult.isEmpty());
@@ -94,7 +98,7 @@ public final class ReflectionTestHelperTest {
         @Test
         void testReturnIntegerWithNoArgument() {
             final ReflectionTestHelper<Integer> reflection = ReflectionTestHelper.from(ReflectionTestDataSet.class);
-            final int actualResult = reflection.invoke(TestMethod.RETURN_INTEGER_WITH_NO_ARGUMENT.getName());
+            final int actualResult = reflection.invokeMethod(TestMethod.RETURN_INTEGER_WITH_NO_ARGUMENT.getName());
 
             assertEquals(1, actualResult);
         }
@@ -102,8 +106,8 @@ public final class ReflectionTestHelperTest {
         @Test
         void testReturnIntegerTrueWithArgument() {
             final ReflectionTestHelper<Integer> reflection = ReflectionTestHelper.from(ReflectionTestDataSet.class);
-            final int actualResult = reflection.add(boolean.class, true)
-                    .invoke(TestMethod.RETURN_INTEGER_WITH_ARGUMENT.getName());
+            final int actualResult = reflection.addArgument(boolean.class, true)
+                    .invokeMethod(TestMethod.RETURN_INTEGER_WITH_ARGUMENT.getName());
 
             assertEquals(1, actualResult);
         }
@@ -111,8 +115,8 @@ public final class ReflectionTestHelperTest {
         @Test
         void testReturnIntegerFalseWithArgument() {
             final ReflectionTestHelper<Integer> reflection = ReflectionTestHelper.from(ReflectionTestDataSet.class);
-            final int actualResult = reflection.add(boolean.class, false)
-                    .invoke(TestMethod.RETURN_INTEGER_WITH_ARGUMENT.getName());
+            final int actualResult = reflection.addArgument(boolean.class, false)
+                    .invokeMethod(TestMethod.RETURN_INTEGER_WITH_ARGUMENT.getName());
 
             assertEquals(0, actualResult);
         }
@@ -120,8 +124,8 @@ public final class ReflectionTestHelperTest {
         @Test
         void testReturnIntegerWithArguments() {
             final ReflectionTestHelper<Integer> reflection = ReflectionTestHelper.from(ReflectionTestDataSet.class);
-            reflection.add(int.class, 1).add(String.class, "test").add(boolean.class, false);
-            final int actualResult = reflection.invoke(TestMethod.RETURN_INTEGER_WITH_ARGUMENTS.getName());
+            reflection.addArgument(int.class, 1).addArgument(String.class, "test").addArgument(boolean.class, false);
+            final int actualResult = reflection.invokeMethod(TestMethod.RETURN_INTEGER_WITH_ARGUMENTS.getName());
 
             assertEquals(1, actualResult);
         }
@@ -129,7 +133,7 @@ public final class ReflectionTestHelperTest {
         @Test
         void testReturnBooleanWithNoArgument() {
             final ReflectionTestHelper<Boolean> reflection = ReflectionTestHelper.from(ReflectionTestDataSet.class);
-            final boolean actualResult = reflection.invoke(TestMethod.RETURN_BOOLEAN_WITH_NO_ARGUMENT.getName());
+            final boolean actualResult = reflection.invokeMethod(TestMethod.RETURN_BOOLEAN_WITH_NO_ARGUMENT.getName());
 
             assertEquals(true, actualResult);
         }
@@ -137,8 +141,8 @@ public final class ReflectionTestHelperTest {
         @Test
         void testReturnBooleanTrueWithArgument() {
             final ReflectionTestHelper<Boolean> reflection = ReflectionTestHelper.from(ReflectionTestDataSet.class);
-            final boolean actualResult = reflection.add(int.class, 1)
-                    .invoke(TestMethod.RETURN_BOOLEAN_WITH_ARGUMENT.getName());
+            final boolean actualResult = reflection.addArgument(int.class, 1)
+                    .invokeMethod(TestMethod.RETURN_BOOLEAN_WITH_ARGUMENT.getName());
 
             assertEquals(true, actualResult);
         }
@@ -146,8 +150,8 @@ public final class ReflectionTestHelperTest {
         @Test
         void testReturnBooleanFalseWithArgument() {
             final ReflectionTestHelper<Boolean> reflection = ReflectionTestHelper.from(ReflectionTestDataSet.class);
-            final boolean actualResult = reflection.add(int.class, 0)
-                    .invoke(TestMethod.RETURN_BOOLEAN_WITH_ARGUMENT.getName());
+            final boolean actualResult = reflection.addArgument(int.class, 0)
+                    .invokeMethod(TestMethod.RETURN_BOOLEAN_WITH_ARGUMENT.getName());
 
             assertEquals(false, actualResult);
         }
@@ -155,8 +159,8 @@ public final class ReflectionTestHelperTest {
         @Test
         void testReturnBooleanWithArguments() {
             final ReflectionTestHelper<Boolean> reflection = ReflectionTestHelper.from(ReflectionTestDataSet.class);
-            reflection.add(int.class, 0).add(String.class, "test").add(boolean.class, true);
-            final boolean actualResult = reflection.invoke(TestMethod.RETURN_BOOLEAN_WITH_ARGUMENTS.getName());
+            reflection.addArgument(int.class, 0).addArgument(String.class, "test").addArgument(boolean.class, true);
+            final boolean actualResult = reflection.invokeMethod(TestMethod.RETURN_BOOLEAN_WITH_ARGUMENTS.getName());
 
             assertEquals(true, actualResult);
         }
@@ -168,10 +172,10 @@ public final class ReflectionTestHelperTest {
             final String[] expectedSequences = new String[] { "test6", "test1", "test100" };
 
             for (String expectedSequence : expectedSequences) {
-                reflection.add(String.class, expectedSequence);
+                reflection.addArgument(String.class, expectedSequence);
             }
 
-            final List<String> actualResult = reflection.invoke(TestMethod.RETURN_LIST_WITH_ARGUMENTS.getName());
+            final List<String> actualResult = reflection.invokeMethod(TestMethod.RETURN_LIST_WITH_ARGUMENTS.getName());
             final int actualSize = actualResult.size();
 
             assertNotNull(actualResult);
@@ -190,10 +194,11 @@ public final class ReflectionTestHelperTest {
             final int[] expectedNumbers = new int[] { 100, 1000, 1 };
 
             for (Integer expectedSequence : expectedNumbers) {
-                reflection.add(int.class, expectedSequence.intValue());
+                reflection.addArgument(int.class, expectedSequence.intValue());
             }
 
-            final Map<String, Integer> actualResult = reflection.invoke(TestMethod.RETURN_MAP_WITH_ARGUMENTS.getName());
+            final Map<String, Integer> actualResult = reflection
+                    .invokeMethod(TestMethod.RETURN_MAP_WITH_ARGUMENTS.getName());
             final int actualSize = actualResult.size();
 
             assertNotNull(actualResult);
@@ -208,22 +213,23 @@ public final class ReflectionTestHelperTest {
         @Test
         void testWhenMethodNameIsEmpty() {
             final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                    () -> ReflectionTestHelper.from(ReflectionTestDataSet.class).invoke(""));
+                    () -> ReflectionTestHelper.from(ReflectionTestDataSet.class).invokeMethod(""));
             assertEquals("Method name must not be empty.", exception.getMessage());
         }
     }
 
     /**
-     * The nested class for {@link ReflectionTestHelper#invoke(String)} method.
+     * The nested class for {@link ReflectionTestHelper#invokeMethod(String)}
+     * method.
      */
     @Nested
-    class TestInvokeStatic {
+    class TestInvokeStaticMethod {
 
         @Test
         void testReturnStringWithNoArgument() {
             final ReflectionTestHelper<String> reflection = ReflectionTestHelper
                     .from(ReflectionStaticTestDataSet.class);
-            final String actualResult = reflection.invoke(TestMethod.RETURN_STRING_WITH_NO_ARGUMENT.getName());
+            final String actualResult = reflection.invokeMethod(TestMethod.RETURN_STRING_WITH_NO_ARGUMENT.getName());
 
             assertNotNull(actualResult);
             assertTrue(!actualResult.isEmpty());
@@ -234,8 +240,8 @@ public final class ReflectionTestHelperTest {
         void testReturnStringSuccessWithArgument() {
             final ReflectionTestHelper<String> reflection = ReflectionTestHelper
                     .from(ReflectionStaticTestDataSet.class);
-            final String actualResult = reflection.add(String.class, "test")
-                    .invoke(TestMethod.RETURN_STRING_WITH_ARGUMENT.getName());
+            final String actualResult = reflection.addArgument(String.class, "test")
+                    .invokeMethod(TestMethod.RETURN_STRING_WITH_ARGUMENT.getName());
 
             assertNotNull(actualResult);
             assertTrue(!actualResult.isEmpty());
@@ -246,8 +252,8 @@ public final class ReflectionTestHelperTest {
         void testReturnStringFailureWithArgument() {
             final ReflectionTestHelper<String> reflection = ReflectionTestHelper
                     .from(ReflectionStaticTestDataSet.class);
-            final String actualResult = reflection.add(String.class, "")
-                    .invoke(TestMethod.RETURN_STRING_WITH_ARGUMENT.getName());
+            final String actualResult = reflection.addArgument(String.class, "")
+                    .invokeMethod(TestMethod.RETURN_STRING_WITH_ARGUMENT.getName());
 
             assertNotNull(actualResult);
             assertTrue(!actualResult.isEmpty());
@@ -258,8 +264,8 @@ public final class ReflectionTestHelperTest {
         void testReturnStringWithArguments() {
             final ReflectionTestHelper<String> reflection = ReflectionTestHelper
                     .from(ReflectionStaticTestDataSet.class);
-            reflection.add(String.class, "").add(int.class, 0).add(boolean.class, true);
-            final String actualResult = reflection.invoke(TestMethod.RETURN_STRING_WITH_ARGUMENTS.getName());
+            reflection.addArgument(String.class, "").addArgument(int.class, 0).addArgument(boolean.class, true);
+            final String actualResult = reflection.invokeMethod(TestMethod.RETURN_STRING_WITH_ARGUMENTS.getName());
 
             assertNotNull(actualResult);
             assertTrue(!actualResult.isEmpty());
@@ -270,7 +276,7 @@ public final class ReflectionTestHelperTest {
         void testReturnIntegerWithNoArgument() {
             final ReflectionTestHelper<Integer> reflection = ReflectionTestHelper
                     .from(ReflectionStaticTestDataSet.class);
-            final int actualResult = reflection.invoke(TestMethod.RETURN_INTEGER_WITH_NO_ARGUMENT.getName());
+            final int actualResult = reflection.invokeMethod(TestMethod.RETURN_INTEGER_WITH_NO_ARGUMENT.getName());
 
             assertEquals(1, actualResult);
         }
@@ -279,8 +285,8 @@ public final class ReflectionTestHelperTest {
         void testReturnIntegerTrueWithArgument() {
             final ReflectionTestHelper<Integer> reflection = ReflectionTestHelper
                     .from(ReflectionStaticTestDataSet.class);
-            final int actualResult = reflection.add(boolean.class, true)
-                    .invoke(TestMethod.RETURN_INTEGER_WITH_ARGUMENT.getName());
+            final int actualResult = reflection.addArgument(boolean.class, true)
+                    .invokeMethod(TestMethod.RETURN_INTEGER_WITH_ARGUMENT.getName());
 
             assertEquals(1, actualResult);
         }
@@ -289,8 +295,8 @@ public final class ReflectionTestHelperTest {
         void testReturnIntegerFalseWithArgument() {
             final ReflectionTestHelper<Integer> reflection = ReflectionTestHelper
                     .from(ReflectionStaticTestDataSet.class);
-            final int actualResult = reflection.add(boolean.class, false)
-                    .invoke(TestMethod.RETURN_INTEGER_WITH_ARGUMENT.getName());
+            final int actualResult = reflection.addArgument(boolean.class, false)
+                    .invokeMethod(TestMethod.RETURN_INTEGER_WITH_ARGUMENT.getName());
 
             assertEquals(0, actualResult);
         }
@@ -299,8 +305,8 @@ public final class ReflectionTestHelperTest {
         void testReturnIntegerWithArguments() {
             final ReflectionTestHelper<Integer> reflection = ReflectionTestHelper
                     .from(ReflectionStaticTestDataSet.class);
-            reflection.add(int.class, 1).add(String.class, "test").add(boolean.class, false);
-            final int actualResult = reflection.invoke(TestMethod.RETURN_INTEGER_WITH_ARGUMENTS.getName());
+            reflection.addArgument(int.class, 1).addArgument(String.class, "test").addArgument(boolean.class, false);
+            final int actualResult = reflection.invokeMethod(TestMethod.RETURN_INTEGER_WITH_ARGUMENTS.getName());
 
             assertEquals(1, actualResult);
         }
@@ -309,7 +315,7 @@ public final class ReflectionTestHelperTest {
         void testReturnBooleanWithNoArgument() {
             final ReflectionTestHelper<Boolean> reflection = ReflectionTestHelper
                     .from(ReflectionStaticTestDataSet.class);
-            final boolean actualResult = reflection.invoke(TestMethod.RETURN_BOOLEAN_WITH_NO_ARGUMENT.getName());
+            final boolean actualResult = reflection.invokeMethod(TestMethod.RETURN_BOOLEAN_WITH_NO_ARGUMENT.getName());
 
             assertEquals(true, actualResult);
         }
@@ -318,8 +324,8 @@ public final class ReflectionTestHelperTest {
         void testReturnBooleanTrueWithArgument() {
             final ReflectionTestHelper<Boolean> reflection = ReflectionTestHelper
                     .from(ReflectionStaticTestDataSet.class);
-            final boolean actualResult = reflection.add(int.class, 1)
-                    .invoke(TestMethod.RETURN_BOOLEAN_WITH_ARGUMENT.getName());
+            final boolean actualResult = reflection.addArgument(int.class, 1)
+                    .invokeMethod(TestMethod.RETURN_BOOLEAN_WITH_ARGUMENT.getName());
 
             assertEquals(true, actualResult);
         }
@@ -328,8 +334,8 @@ public final class ReflectionTestHelperTest {
         void testReturnBooleanFalseWithArgument() {
             final ReflectionTestHelper<Boolean> reflection = ReflectionTestHelper
                     .from(ReflectionStaticTestDataSet.class);
-            final boolean actualResult = reflection.add(int.class, 0)
-                    .invoke(TestMethod.RETURN_BOOLEAN_WITH_ARGUMENT.getName());
+            final boolean actualResult = reflection.addArgument(int.class, 0)
+                    .invokeMethod(TestMethod.RETURN_BOOLEAN_WITH_ARGUMENT.getName());
 
             assertEquals(false, actualResult);
         }
@@ -338,8 +344,8 @@ public final class ReflectionTestHelperTest {
         void testReturnBooleanWithArguments() {
             final ReflectionTestHelper<Boolean> reflection = ReflectionTestHelper
                     .from(ReflectionStaticTestDataSet.class);
-            reflection.add(int.class, 0).add(String.class, "test").add(boolean.class, true);
-            final boolean actualResult = reflection.invoke(TestMethod.RETURN_BOOLEAN_WITH_ARGUMENTS.getName());
+            reflection.addArgument(int.class, 0).addArgument(String.class, "test").addArgument(boolean.class, true);
+            final boolean actualResult = reflection.invokeMethod(TestMethod.RETURN_BOOLEAN_WITH_ARGUMENTS.getName());
 
             assertEquals(true, actualResult);
         }
@@ -351,10 +357,10 @@ public final class ReflectionTestHelperTest {
             final String[] expectedSequences = new String[] { "test6", "test1", "test100" };
 
             for (String expectedSequence : expectedSequences) {
-                reflection.add(String.class, expectedSequence);
+                reflection.addArgument(String.class, expectedSequence);
             }
 
-            final List<String> actualResult = reflection.invoke(TestMethod.RETURN_LIST_WITH_ARGUMENTS.getName());
+            final List<String> actualResult = reflection.invokeMethod(TestMethod.RETURN_LIST_WITH_ARGUMENTS.getName());
             final int actualSize = actualResult.size();
 
             assertNotNull(actualResult);
@@ -373,10 +379,11 @@ public final class ReflectionTestHelperTest {
             final int[] expectedNumbers = new int[] { 100, 1000, 1 };
 
             for (Integer expectedSequence : expectedNumbers) {
-                reflection.add(int.class, expectedSequence.intValue());
+                reflection.addArgument(int.class, expectedSequence.intValue());
             }
 
-            final Map<String, Integer> actualResult = reflection.invoke(TestMethod.RETURN_MAP_WITH_ARGUMENTS.getName());
+            final Map<String, Integer> actualResult = reflection
+                    .invokeMethod(TestMethod.RETURN_MAP_WITH_ARGUMENTS.getName());
             final int actualSize = actualResult.size();
 
             assertNotNull(actualResult);
@@ -391,23 +398,24 @@ public final class ReflectionTestHelperTest {
         @Test
         void testWhenMethodNameIsEmpty() {
             final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                    () -> ReflectionTestHelper.from(ReflectionTestDataSet.class).invoke(""));
+                    () -> ReflectionTestHelper.from(ReflectionTestDataSet.class).invokeMethod(""));
             assertEquals("Method name must not be empty.", exception.getMessage());
         }
     }
 
     /**
-     * The nested class for {@link ReflectionTestHelper#add(Class, Object)} method.
+     * The nested class for {@link ReflectionTestHelper#addArgument(Class, Object)}
+     * method.
      */
     @Nested
-    class TestAdd {
+    class TestAddArgument {
 
         @Test
         void testSimplePattern() {
 
             final ReflectionTestHelper<String> reflection = ReflectionTestHelper.from(ReflectionTestDataSet.class);
-            final String actualResult = reflection.add(String.class, "test")
-                    .invoke(TestMethod.RETURN_STRING_WITH_ARGUMENT.getName());
+            final String actualResult = reflection.addArgument(String.class, "test")
+                    .invokeMethod(TestMethod.RETURN_STRING_WITH_ARGUMENT.getName());
 
             assertNotNull(actualResult);
             assertTrue(!actualResult.isEmpty());
@@ -418,8 +426,8 @@ public final class ReflectionTestHelperTest {
         void testMethodChainPattern() {
 
             final ReflectionTestHelper<String> reflection = ReflectionTestHelper.from(ReflectionTestDataSet.class);
-            final String actualResult = reflection.add(String.class, "test").add(int.class, 0).add(boolean.class, true)
-                    .invoke(TestMethod.RETURN_STRING_WITH_ARGUMENTS.getName());
+            final String actualResult = reflection.addArgument(String.class, "test").addArgument(int.class, 0)
+                    .addArgument(boolean.class, true).invokeMethod(TestMethod.RETURN_STRING_WITH_ARGUMENTS.getName());
 
             assertNotNull(actualResult);
             assertTrue(!actualResult.isEmpty());
