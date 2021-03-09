@@ -7,17 +7,19 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
-- [What is it?](#what-is-it)
-- [How To Use](#how-to-use)
-  - [1. Add the dependencies](#1-add-the-dependencies)
-  - [2. Import `Reflection Test Helper`](#2-import-reflection-test-helper)
-  - [3. Create new instance of `ReflectionTestHelper`](#3-create-new-instance-of-reflectiontesthelper)
-  - [4. Invoke method](#4-invoke-method)
-  - [5. Invoke method with the argument](#5-invoke-method-with-the-argument)
-- [License](#license)
-- [More Information](#more-information)
+- [Reflection Test Helper](#reflection-test-helper)
+  - [What is it?](#what-is-it)
+  - [How To Use](#how-to-use)
+    - [1. Add the dependencies](#1-add-the-dependencies)
+    - [2. Import `Reflection Test Helper`](#2-import-reflection-test-helper)
+    - [3. Create new instance of `ReflectionTestHelper`](#3-create-new-instance-of-reflectiontesthelper)
+    - [4. Invoke method](#4-invoke-method)
+    - [5. Invoke method with the argument](#5-invoke-method-with-the-argument)
+  - [License](#license)
+  - [More Information](#more-information)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -97,7 +99,7 @@ If you need to specify arguments for the method to be called by reflection, you 
 
 ```java
 // Specify the name of the method to be invoked as an argument
-final String result = reflectionTestHelper.invoke("methodName");
+final String result = reflectionTestHelper.invokeMethod("methodName");
 ```
 
 ### 5. Invoke method with the argument
@@ -107,11 +109,11 @@ By calling the add method with **_the first argument as the argument type_** and
 ```java
 
 // Set the arguments required for method execution
-reflectionTestHelper.add(String.class, "firstArgument");
-reflectionTestHelper.add(Integer.class, 1000);
+reflectionTestHelper.addArgument(String.class, "firstArgument");
+reflectionTestHelper.addArgument(Integer.class, 1000);
 
 // Specify the name of the method to be invoked as an argument
-final String result = reflectionTestHelper.invoke("methodNameWithArgument");
+final String result = reflectionTestHelper.invokeMethod("methodNameWithArgument");
 ```
 
 ## License
