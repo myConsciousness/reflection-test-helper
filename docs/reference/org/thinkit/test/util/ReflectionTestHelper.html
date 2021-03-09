@@ -100,13 +100,14 @@ implements <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base
 
  <p>
  Then you can execute the target method by creating a new instance of
- <a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス"><code>ReflectionTestHelper</code></a> and then invoking the <a href="#invoke(java.lang.String)"><code>invoke(String)</code></a>
- method with the name of the method to be invoked as the argument.
+ <a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス"><code>ReflectionTestHelper</code></a> and then invoking the
+ <a href="#invokeMethod(java.lang.String)"><code>invokeMethod(String)</code></a> method with the name of the method to be
+ invoked as the argument.
 
  <p>
  If the method to be invoked requires the specification of arguments, call the
- <a href="#add(java.lang.Class,java.lang.Object)"><code>add(Class, Object)</code></a> method and add the argument types and values that
- need to be set.</div>
+ <a href="#addArgument(java.lang.Class,java.lang.Object)"><code>addArgument(Class, Object)</code></a> method and add the argument types and
+ values that need to be set.</div>
 <dl class="notes">
 <dt>導入されたバージョン:</dt>
 <dd>1.0.0</dd>
@@ -134,7 +135,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base
 <tbody>
 <tr class="alt-color" id="i0">
 <td class="col-first"><code><a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス">ReflectionTestHelper</a>&lt;<a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a>&gt;</code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#add(java.lang.Class,java.lang.Object)">add</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Class.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Class</a>&lt;?&gt;&nbsp;argumentType,
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#addArgument(java.lang.Class,java.lang.Object)">addArgument</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Class.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Class</a>&lt;?&gt;&nbsp;argumentType,
 <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Object.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Object</a>&nbsp;argumentValue)</code></th>
 <td class="col-last">
 <div class="block">Adds the argument types and values defined for the target method to be
@@ -161,7 +162,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base
 </tr>
 <tr class="alt-color" id="i4">
 <td class="col-first"><code><a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a></code></td>
-<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#invoke(java.lang.String)">invoke</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;methodName)</code></th>
+<th class="col-second" scope="row"><code><span class="member-name-link"><a href="#invokeMethod(java.lang.String)">invokeMethod</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;methodName)</code></th>
 <td class="col-last">
 <div class="block">Invokes the indicated method by reflection.</div>
 </td>
@@ -209,9 +210,9 @@ implements <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base
 </section>
 </li>
 <li>
-<section class="detail" id="invoke(java.lang.String)">
-<h3>invoke</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a></span>&nbsp;<span class="member-name">invoke</span>&#8203;(<span class="parameters"><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;methodName)</span></div>
+<section class="detail" id="invokeMethod(java.lang.String)">
+<h3>invokeMethod</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a></span>&nbsp;<span class="member-name">invokeMethod</span>&#8203;(<span class="parameters"><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;methodName)</span></div>
 <div class="block">Invokes the indicated method by reflection. The value defined in the target
  method to be called in the reflection will be returned.</div>
 <dl class="notes">
@@ -229,9 +230,9 @@ implements <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base
 </section>
 </li>
 <li>
-<section class="detail" id="add(java.lang.Class,java.lang.Object)">
-<h3>add</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス">ReflectionTestHelper</a>&lt;<a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a>&gt;</span>&nbsp;<span class="member-name">add</span>&#8203;(<span class="parameters">@NonNull
+<section class="detail" id="addArgument(java.lang.Class,java.lang.Object)">
+<h3>addArgument</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス">ReflectionTestHelper</a>&lt;<a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a>&gt;</span>&nbsp;<span class="member-name">addArgument</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Class.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Class</a>&lt;?&gt;&nbsp;argumentType,
 <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Object.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Object</a>&nbsp;argumentValue)</span></div>
 <div class="block">Adds the argument types and values defined for the target method to be
