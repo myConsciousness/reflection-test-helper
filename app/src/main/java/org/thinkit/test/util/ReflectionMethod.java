@@ -112,11 +112,13 @@ final class ReflectionMethod<T> implements Serializable {
      *
      * @param argumentType  The type of argument
      * @param argumentValue The value of argument
+     * @return This instance
      *
      * @exception NullPointerException If the argument {@code argumentType} is null
      */
-    protected void addArgument(@NonNull Class<?> argumentType, Object argumentValue) {
+    protected ReflectionMethod<T> addArgument(@NonNull Class<?> argumentType, Object argumentValue) {
         this.parameter.add(argumentType, argumentValue);
+        return this;
     }
 
     /**
