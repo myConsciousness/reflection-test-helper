@@ -15,6 +15,7 @@
 package org.thinkit.test.util;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -83,6 +84,47 @@ public final class ReflectionTestHelper<T> implements Serializable {
     private ReflectionTestHelper(@NonNull final Class<?> clazz) {
         this.parameter = ReflectionParameter.newInstance();
         this.clazz = clazz;
+    }
+
+    /**
+     * Set {@code fieldValue} to the field associated with {@code fieldName}
+     * specified as an argument.
+     *
+     * @param fieldName  The field name to be processed for reflection
+     * @param fieldValue The value to be set to the field by reflection
+     * @return This instance
+     *
+     * @exception IllegalStateException If an error occurs in the reflection process
+     */
+    public ReflectionTestHelper<T> setFieldValue(@NonNull final String fieldName, final Object fieldValue) {
+
+        try {
+            final Field field = this.clazz.getDeclaredField(fieldName);
+            field.setAccessible(true);
+            field.set(this.clazz, fieldValue);
+        } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+            throw new IllegalStateException(e);
+        }
+
+        return this;
+    }
+
+    /**
+     * Returns the value from the field associated with {@code fieldName} specified
+     * as an argument.
+     *
+     * @param fieldName The field name to be processed for reflection
+     * @return The value retrieved from the field by reflection
+     *
+     * @exception IllegalStateException If an error occurs in the reflection process
+     */
+    public Object getFieldValue(@NonNull final String fieldName) {
+        try {
+            final Field field = this.clazz.getDeclaredField(fieldName);
+            return field.get(this.clazz);
+        } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+            throw new IllegalStateException(e);
+        }
     }
 
     /**
