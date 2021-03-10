@@ -43,10 +43,10 @@ public final class ReflectionParameterTest {
         @Test
         void testWhenParameterHasStringType() {
 
-            final ReflectionParameter parameterEntity = ReflectionParameter.newInstance();
-            parameterEntity.add(String.class, "");
+            final ReflectionParameter sut = ReflectionParameter.newInstance();
+            sut.add(String.class, "");
 
-            final Class<?>[] types = parameterEntity.getTypes();
+            final Class<?>[] types = sut.getTypes();
             assertNotNull(types);
             assertTrue(types.length == 1);
             assertEquals(String.class, types[0]);
@@ -55,15 +55,15 @@ public final class ReflectionParameterTest {
         @Test
         void testWhenParameterHasMultipleTypes() {
 
-            final ReflectionParameter parameterEntity = ReflectionParameter.newInstance();
-            parameterEntity.add(String.class, "");
-            parameterEntity.add(Integer.class, 0);
-            parameterEntity.add(Boolean.class, true);
-            parameterEntity.add(int.class, 1);
-            parameterEntity.add(boolean.class, false);
-            parameterEntity.add(Map.class, Map.of());
+            final ReflectionParameter sut = ReflectionParameter.newInstance();
+            sut.add(String.class, "");
+            sut.add(Integer.class, 0);
+            sut.add(Boolean.class, true);
+            sut.add(int.class, 1);
+            sut.add(boolean.class, false);
+            sut.add(Map.class, Map.of());
 
-            final Class<?>[] types = parameterEntity.getTypes();
+            final Class<?>[] types = sut.getTypes();
             assertNotNull(types);
             assertTrue(types.length == 6);
             assertEquals(String.class, types[0]);
@@ -91,10 +91,10 @@ public final class ReflectionParameterTest {
         @ValueSource(strings = { "", " ", "　", "t", "test", "/!*;=" })
         void testWhenParameterHasStringValue(final String parameter) {
 
-            final ReflectionParameter parameterEntity = ReflectionParameter.newInstance();
-            parameterEntity.add(String.class, parameter);
+            final ReflectionParameter sut = ReflectionParameter.newInstance();
+            sut.add(String.class, parameter);
 
-            final Object[] values = parameterEntity.getValues();
+            final Object[] values = sut.getValues();
             assertNotNull(values);
             assertTrue(values.length == 1);
             assertEquals(parameter, values[0]);
@@ -103,14 +103,14 @@ public final class ReflectionParameterTest {
         @Test
         void testWhenParameterHasMultipleValues() {
 
-            final ReflectionParameter parameterEntity = ReflectionParameter.newInstance();
-            parameterEntity.add(String.class, "");
-            parameterEntity.add(Integer.class, 0);
-            parameterEntity.add(Boolean.class, true);
-            parameterEntity.add(int.class, 1);
-            parameterEntity.add(boolean.class, false);
+            final ReflectionParameter sut = ReflectionParameter.newInstance();
+            sut.add(String.class, "");
+            sut.add(Integer.class, 0);
+            sut.add(Boolean.class, true);
+            sut.add(int.class, 1);
+            sut.add(boolean.class, false);
 
-            final Object[] values = parameterEntity.getValues();
+            final Object[] values = sut.getValues();
             assertNotNull(values);
             assertTrue(values.length == 5);
             assertEquals("", values[0]);
@@ -135,15 +135,15 @@ public final class ReflectionParameterTest {
 
         @Test
         void testWhenParameterisSet() {
-            final ReflectionParameter parameterEntity = ReflectionParameter.newInstance();
-            parameterEntity.add(String.class, "test");
-            assertTrue(!parameterEntity.isEmpty());
+            final ReflectionParameter sut = ReflectionParameter.newInstance();
+            sut.add(String.class, "test");
+            assertTrue(!sut.isEmpty());
         }
 
         @Test
         void testWhenParameterisNotSet() {
-            final ReflectionParameter parameterEntity = ReflectionParameter.newInstance();
-            assertTrue(parameterEntity.isEmpty());
+            final ReflectionParameter sut = ReflectionParameter.newInstance();
+            assertTrue(sut.isEmpty());
         }
     }
 }

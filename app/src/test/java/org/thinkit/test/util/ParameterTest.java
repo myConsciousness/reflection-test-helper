@@ -46,75 +46,79 @@ public final class ParameterTest {
 
         @ParameterizedTest
         @ValueSource(strings = { "", " ", "　", "t", "test", "/!*;=" })
-        void testWhenParametrHasStringArgument(final String parameter) {
+        void testWhenParametrHasStringArgument(final String expected) {
 
-            final Parameter parameterEntity = Parameter.from(String.class, parameter);
+            final Parameter sut = Parameter.from(String.class, expected);
 
-            assertNotNull(parameterEntity);
-            assertEquals(String.class, parameterEntity.getType());
-            assertEquals(parameter, parameterEntity.getValue());
+            assertNotNull(sut);
+            assertEquals(String.class, sut.getType());
+            assertEquals(expected, sut.getValue());
         }
 
         @ParameterizedTest
         @ValueSource(ints = { -1, 0, 1 })
-        void testWhenParametrHasIntegerArgument(final int parameter) {
+        void testWhenParametrHasIntegerArgument(final int expected) {
 
-            final Parameter parameterEntity = Parameter.from(Integer.class, parameter);
+            final Parameter sut = Parameter.from(Integer.class, expected);
 
-            assertNotNull(parameterEntity);
-            assertEquals(Integer.class, parameterEntity.getType());
-            assertEquals(parameter, parameterEntity.getValue());
+            assertNotNull(sut);
+            assertEquals(Integer.class, sut.getType());
+            assertEquals(expected, sut.getValue());
         }
 
         @Test
         void testWhenParametrHasListArgument() {
 
-            final Parameter parameterEntity = Parameter.from(List.class, List.of("test"));
+            final String expected = "test";
+            final Parameter sut = Parameter.from(List.class, List.of(expected));
 
-            assertNotNull(parameterEntity);
-            assertEquals(List.class, parameterEntity.getType());
+            assertNotNull(sut);
+            assertEquals(List.class, sut.getType());
 
             @SuppressWarnings("unchecked")
-            final List<String> values = (List<String>) parameterEntity.getValue();
+            final List<String> values = (List<String>) sut.getValue();
 
             assertTrue(values.size() == 1);
-            assertEquals("test", values.get(0));
+            assertEquals(expected, values.get(0));
         }
 
         @Test
         void testWhenParametrHasMapArgument() {
 
-            final Parameter parameterEntity = Parameter.from(Map.class, Map.of("key", "test"));
+            final String expectedKey = "key";
+            final String expectedValue = "test";
+            final Parameter sut = Parameter.from(Map.class, Map.of(expectedKey, expectedValue));
 
-            assertNotNull(parameterEntity);
-            assertEquals(Map.class, parameterEntity.getType());
+            assertNotNull(sut);
+            assertEquals(Map.class, sut.getType());
 
             @SuppressWarnings("unchecked")
-            final Map<String, String> values = (Map<String, String>) parameterEntity.getValue();
+            final Map<String, String> values = (Map<String, String>) sut.getValue();
 
             assertTrue(values.size() == 1);
 
             values.forEach((key, value) -> {
-                assertEquals("key", key);
-                assertEquals("test", value);
+                assertEquals(expectedKey, key);
+                assertEquals(expectedValue, value);
             });
         }
 
         @Test
         void testWhenParametrHasSetArgument() {
 
-            final Parameter parameterEntity = Parameter.from(Set.class, Set.of("test"));
+            final String expected = "test";
+            final Parameter sut = Parameter.from(Set.class, Set.of(expected));
 
-            assertNotNull(parameterEntity);
-            assertEquals(Set.class, parameterEntity.getType());
+            assertNotNull(sut);
+            assertEquals(Set.class, sut.getType());
 
             @SuppressWarnings("unchecked")
-            final Set<String> values = (Set<String>) parameterEntity.getValue();
+            final Set<String> values = (Set<String>) sut.getValue();
 
             assertTrue(values.size() == 1);
 
             for (final String value : values) {
-                assertEquals("test", value);
+                assertEquals(expected, value);
             }
         }
 
