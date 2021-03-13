@@ -92,6 +92,7 @@ public final class ReflectionTestHelper<T, R> implements Serializable {
      * Returns the new instance of {@link ReflectionTestHelper} based on the
      * argument.
      *
+     * @param <T>   The type of SUT
      * @param <R>   The type returned by the method to be invoked
      * @param clazz The class in which the method to be invoked is defined
      * @return The new instance of {@link ReflectionTestHelper}
@@ -167,9 +168,11 @@ public final class ReflectionTestHelper<T, R> implements Serializable {
      * Returns the instance of the class in which the method to be invoked by
      * reflection is defined.
      *
+     * @param clazz The class in which the method to be invoked is defined
      * @return The instance of the class in which the method to be invoked by
      *         reflection is defined
      *
+     * @exception NullPointerException If {@code null} is passed as an argument
      * @throws InstantiationException    If the class that declares the underlying
      *                                   constructor represents an abstract class
      * @throws IllegalAccessException    If this {@code Constructor} object is

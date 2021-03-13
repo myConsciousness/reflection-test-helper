@@ -67,6 +67,7 @@ final class ReflectionMethod<T, R> implements Serializable {
     /**
      * Returns the new instance of {@link ReflectionMethod} based on the arguments.
      *
+     * @param <T>         The type of SUT
      * @param <R>         The type returned by the method to be invoked
      * @param sutInstance The class in which the method to be invoked is defined
      * @return The new instance of {@link ReflectionMethod}

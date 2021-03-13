@@ -72,10 +72,10 @@ loadScripts(document, 'script');</script>
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="sub-title"><span class="package-label-in-type">パッケージ</span>&nbsp;<a href="package-summary.html">org.thinkit.test.util</a></div>
-<h1 title="クラス ReflectionTestHelper" class="title">クラス ReflectionTestHelper&lt;T&gt;</h1>
+<h1 title="クラス ReflectionTestHelper" class="title">クラス ReflectionTestHelper&lt;T,&#8203;R&gt;</h1>
 </div>
 <div class="inheritance" title="継承ツリー"><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Object.html" title="java.lang内のクラスまたはインタフェース" class="external-link">java.lang.Object</a>
-<div class="inheritance">org.thinkit.test.util.ReflectionTestHelper&lt;T&gt;</div>
+<div class="inheritance">org.thinkit.test.util.ReflectionTestHelper&lt;T,&#8203;R&gt;</div>
 </div>
 <section class="description">
 <dl class="notes">
@@ -83,7 +83,7 @@ loadScripts(document, 'script');</script>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/io/Serializable.html" title="java.io内のクラスまたはインタフェース" class="external-link">Serializable</a></code></dd>
 </dl>
 <hr>
-<pre>public final class <span class="type-name-label">ReflectionTestHelper&lt;T&gt;</span>
+<pre>public final class <span class="type-name-label">ReflectionTestHelper&lt;T,&#8203;R&gt;</span>
 extends <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Object.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Object</a>
 implements <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/io/Serializable.html" title="java.io内のクラスまたはインタフェース" class="external-link">Serializable</a></pre>
 <div class="block">The class that defines a function that makes it easier to use the reflection
@@ -134,7 +134,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base
 </thead>
 <tbody>
 <tr class="alt-color" id="i0">
-<td class="col-first"><code><a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス">ReflectionTestHelper</a>&lt;<a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a>&gt;</code></td>
+<td class="col-first"><code><a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス">ReflectionTestHelper</a>&lt;<a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a>,&#8203;<a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">R</a>&gt;</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#addArgument(java.lang.Class,java.lang.Object)">addArgument</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Class.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Class</a>&lt;?&gt;&nbsp;argumentType,
 <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Object.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Object</a>&nbsp;argumentValue)</code></th>
 <td class="col-last">
@@ -148,7 +148,8 @@ implements <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base
 <td class="col-last">&nbsp;</td>
 </tr>
 <tr class="alt-color" id="i2">
-<td class="col-first"><code>static &lt;T&gt;&nbsp;<a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス">ReflectionTestHelper</a>&lt;T&gt;</code></td>
+<td class="col-first"><code>static &lt;T,&#8203;
+R&gt;&nbsp;<a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス">ReflectionTestHelper</a>&lt;T,&#8203;R&gt;</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#from(java.lang.Class)">from</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Class.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Class</a>&lt;?&gt;&nbsp;clazz)</code></th>
 <td class="col-last">
 <div class="block">Returns the new instance of <a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス"><code>ReflectionTestHelper</code></a> based on the
@@ -169,14 +170,14 @@ implements <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base
 <td class="col-last">&nbsp;</td>
 </tr>
 <tr class="row-color" id="i5">
-<td class="col-first"><code><a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a></code></td>
+<td class="col-first"><code><a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">R</a></code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#invokeMethod(java.lang.String)">invokeMethod</a></span>&#8203;(<a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;methodName)</code></th>
 <td class="col-last">
 <div class="block">Invokes the indicated method by reflection.</div>
 </td>
 </tr>
 <tr class="alt-color" id="i6">
-<td class="col-first"><code><a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス">ReflectionTestHelper</a>&lt;<a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a>&gt;</code></td>
+<td class="col-first"><code><a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス">ReflectionTestHelper</a>&lt;<a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a>,&#8203;<a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">R</a>&gt;</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#setFieldValue(java.lang.String,java.lang.Object)">setFieldValue</a></span>&#8203;(@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;fieldName,
 <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Object.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Object</a>&nbsp;fieldValue)</code></th>
 <td class="col-last">
@@ -208,9 +209,30 @@ implements <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base
 <h2>メソッドの詳細</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="from(java.lang.Class)">
+<h3>from</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;T,&#8203;
+R&gt;</span>&nbsp;<span class="return-type"><a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス">ReflectionTestHelper</a>&lt;T,&#8203;R&gt;</span>&nbsp;<span class="member-name">from</span>&#8203;(<span class="parameters">@NonNull
+@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Class.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Class</a>&lt;?&gt;&nbsp;clazz)</span></div>
+<div class="block">Returns the new instance of <a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス"><code>ReflectionTestHelper</code></a> based on the
+ argument.</div>
+<dl class="notes">
+<dt>型パラメータ:</dt>
+<dd><code>T</code> - The type of SUT</dd>
+<dd><code>R</code> - The type returned by the method to be invoked</dd>
+<dt>パラメータ:</dt>
+<dd><code>clazz</code> - The class in which the method to be invoked is defined</dd>
+<dt>戻り値:</dt>
+<dd>The new instance of <a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス"><code>ReflectionTestHelper</code></a></dd>
+<dt>例外:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/NullPointerException.html" title="java.lang内のクラスまたはインタフェース" class="external-link">NullPointerException</a></code> - If <code>null</code> is passed as an argument</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="setFieldValue(java.lang.String,java.lang.Object)">
 <h3>setFieldValue</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス">ReflectionTestHelper</a>&lt;<a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a>&gt;</span>&nbsp;<span class="member-name">setFieldValue</span>&#8203;(<span class="parameters">@NonNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス">ReflectionTestHelper</a>&lt;<a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a>,&#8203;<a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">R</a>&gt;</span>&nbsp;<span class="member-name">setFieldValue</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;fieldName,
 <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Object.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Object</a>&nbsp;fieldValue)</span></div>
 <div class="block">Set <code>fieldValue</code> to the field associated with <code>fieldName</code>
@@ -244,28 +266,9 @@ implements <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base
 </section>
 </li>
 <li>
-<section class="detail" id="from(java.lang.Class)">
-<h3>from</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type"><a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス">ReflectionTestHelper</a>&lt;T&gt;</span>&nbsp;<span class="member-name">from</span>&#8203;(<span class="parameters">@NonNull
-@NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Class.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Class</a>&lt;?&gt;&nbsp;clazz)</span></div>
-<div class="block">Returns the new instance of <a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス"><code>ReflectionTestHelper</code></a> based on the
- argument.</div>
-<dl class="notes">
-<dt>型パラメータ:</dt>
-<dd><code>T</code> - The type returned by the method to be invoked</dd>
-<dt>パラメータ:</dt>
-<dd><code>clazz</code> - The class in which the method to be invoked is defined</dd>
-<dt>戻り値:</dt>
-<dd>The new instance of <a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス"><code>ReflectionTestHelper</code></a></dd>
-<dt>例外:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/NullPointerException.html" title="java.lang内のクラスまたはインタフェース" class="external-link">NullPointerException</a></code> - If <code>null</code> is passed as an argument</dd>
-</dl>
-</section>
-</li>
-<li>
 <section class="detail" id="invokeMethod(java.lang.String)">
 <h3>invokeMethod</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a></span>&nbsp;<span class="member-name">invokeMethod</span>&#8203;(<span class="parameters"><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;methodName)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">R</a></span>&nbsp;<span class="member-name">invokeMethod</span>&#8203;(<span class="parameters"><a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/String.html" title="java.lang内のクラスまたはインタフェース" class="external-link">String</a>&nbsp;methodName)</span></div>
 <div class="block">Invokes the indicated method by reflection. The value defined in the target
  method to be called in the reflection will be returned.</div>
 <dl class="notes">
@@ -285,7 +288,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base
 <li>
 <section class="detail" id="addArgument(java.lang.Class,java.lang.Object)">
 <h3>addArgument</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス">ReflectionTestHelper</a>&lt;<a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a>&gt;</span>&nbsp;<span class="member-name">addArgument</span>&#8203;(<span class="parameters">@NonNull
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ReflectionTestHelper.html" title="org.thinkit.test.util内のクラス">ReflectionTestHelper</a>&lt;<a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">T</a>,&#8203;<a href="ReflectionTestHelper.html" title="ReflectionTestHelper内の型パラメータ">R</a>&gt;</span>&nbsp;<span class="member-name">addArgument</span>&#8203;(<span class="parameters">@NonNull
 @NonNull <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Class.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Class</a>&lt;?&gt;&nbsp;argumentType,
 <a href="https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/lang/Object.html" title="java.lang内のクラスまたはインタフェース" class="external-link">Object</a>&nbsp;argumentValue)</span></div>
 <div class="block">Adds the argument types and values defined for the target method to be
