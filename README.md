@@ -7,17 +7,20 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
-- [What is it?](#what-is-it)
-- [How To Use](#how-to-use)
-  - [1. Add the dependencies](#1-add-the-dependencies)
-  - [2. Import `Reflection Test Helper`](#2-import-reflection-test-helper)
-  - [3. Create new instance of `ReflectionTestHelper`](#3-create-new-instance-of-reflectiontesthelper)
-  - [4. Invoke method](#4-invoke-method)
-  - [5. Invoke method with the argument](#5-invoke-method-with-the-argument)
-- [License](#license)
-- [More Information](#more-information)
+- [Reflection Test Helper](#reflection-test-helper)
+  - [What is it?](#what-is-it)
+  - [How To Use](#how-to-use)
+    - [1. Add the dependencies](#1-add-the-dependencies)
+    - [2. Import `Reflection Test Helper`](#2-import-reflection-test-helper)
+    - [3. Create new instance of `ReflectionTestHelper`](#3-create-new-instance-of-reflectiontesthelper)
+    - [4. Invoke method](#4-invoke-method)
+    - [5. Invoke method with the argument](#5-invoke-method-with-the-argument)
+    - [6. Invoke method with the field value](#6-invoke-method-with-the-field-value)
+  - [License](#license)
+  - [More Information](#more-information)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -81,19 +84,21 @@ import org.thinkit.test.util.ReflectionTestHelper;
 ### 3. Create new instance of `ReflectionTestHelper`
 
 ```java
-// If the method to be invoked is in ConcreteClass, and it returns the string
-final ReflectionTestHelper<String> reflectionTestHelper = ReflectionTestHelper.from(ConcreteClass.class);
+// If the ConcreteClass is SUT, and the method returns the string
+final ReflectionTestHelper<ConcreteClass, String> reflectionTestHelper = ReflectionTestHelper.from(ConcreteClass.class);
 ```
 
 > **_Note:_**</br>
 > The static constructor of the ReflectionTestHelper class, the from method, should be passed the class object of the class in which the method to be invoked by reflection is defined as an argument.
-> Also, the ReflectionTestHelper generic should specify the type of the return value of the method to be called in reflection.
+> Also, the ReflectionTestHelper generic should specify the type of SUT and the type of return value of the method to be called in reflection.
 
 ### 4. Invoke method
 
 By executing the invoke method with the name of the method to be called in reflection as an argument, the specified method can be executed in reflection.
 
 If you need to specify arguments for the method to be called by reflection, you can use [this way](#5-invoke-method-with-the-argument) to specify the arguments.
+
+Or if the processing of the method depends on the value of the class field, you can use [this way](#6-invoke-method-with-the-field-value) to specify the arguments.
 
 ```java
 // Specify the name of the method to be invoked as an argument
@@ -102,7 +107,7 @@ final String result = reflectionTestHelper.invokeMethod("methodName");
 
 ### 5. Invoke method with the argument
 
-By calling the add method with **_the first argument as the argument type_** and **_the second argument as the argument value_**, you can specify the arguments required to invoke the target method to be invoked by reflection.
+By calling the `addArgument` method with **_the first argument as the argument type_** and **_the second argument as the argument value_**, you can specify the arguments required to invoke the target method to be invoked by reflection.
 
 ```java
 
@@ -110,8 +115,22 @@ By calling the add method with **_the first argument as the argument type_** and
 reflectionTestHelper.addArgument(String.class, "firstArgument");
 reflectionTestHelper.addArgument(Integer.class, 1000);
 
-// Specify the name of the method to be invoked as an argument
-final String result = reflectionTestHelper.invokeMethod("methodNameWithArgument");
+// Specify the name of the method to be invoked
+final String result = reflectionTestHelper.invokeMethod("methodName");
+```
+
+### 6. Invoke method with the field value
+
+By calling the `setFieldValue` method with **_the first argument as the field name_** and **_the second argument as the field value_**, you can specify the field required to invoke the process of target method to be invoked by reflection.
+
+```java
+
+// Set the field value required for method process
+reflectionTestHelper.setFieldValue("testField1", "something...");
+reflectionTestHelper.setFieldValue("testField2", 1000);
+
+// Specify the name of the method to be invoked
+final String result = reflectionTestHelper.invokeMethod("methodName");
 ```
 
 ## License
