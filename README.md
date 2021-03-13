@@ -1,5 +1,5 @@
 ![Build](https://img.shields.io/badge/Build-Automated-2980b9.svg?style=for-the-badge)
-![Latest Version](https://img.shields.io/badge/Latest_Version-v1.0.3-27ae60.svg?style=for-the-badge)
+![Latest Version](https://img.shields.io/badge/Latest_Version-v1.0.4-27ae60.svg?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-Apache_2.0-e74c3c.svg?style=for-the-badge)</br>
 ![Java CI with Gradle](https://github.com/myConsciousness/reflection-test-helper/workflows/Java%20CI%20with%20Gradle/badge.svg)
 
@@ -7,19 +7,21 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
-- [What is it?](#what-is-it)
-- [How To Use](#how-to-use)
-  - [1. Add the dependencies](#1-add-the-dependencies)
-  - [2. Import `Reflection Test Helper`](#2-import-reflection-test-helper)
-  - [3. Create new instance of `ReflectionTestHelper`](#3-create-new-instance-of-reflectiontesthelper)
-  - [4. Invoke method](#4-invoke-method)
-  - [5. Invoke method with the argument](#5-invoke-method-with-the-argument)
-  - [6. Invoke method with the field value](#6-invoke-method-with-the-field-value)
-  - [7. If you want to get the value of a specific field in the SUT](#7-if-you-want-to-get-the-value-of-a-specific-field-in-the-sut)
-- [License](#license)
-- [More Information](#more-information)
+- [Reflection Test Helper](#reflection-test-helper)
+  - [What is it?](#what-is-it)
+  - [How To Use](#how-to-use)
+    - [1. Add the dependencies](#1-add-the-dependencies)
+    - [2. Import `Reflection Test Helper`](#2-import-reflection-test-helper)
+    - [3. Create new instance of `ReflectionTestHelper`](#3-create-new-instance-of-reflectiontesthelper)
+    - [4. Invoke method](#4-invoke-method)
+    - [5. Invoke method with the argument](#5-invoke-method-with-the-argument)
+    - [6. Invoke method with the field value](#6-invoke-method-with-the-field-value)
+    - [7. If you want to get the value of a specific field in the SUT](#7-if-you-want-to-get-the-value-of-a-specific-field-in-the-sut)
+  - [License](#license)
+  - [More Information](#more-information)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -46,7 +48,7 @@ The `Reflection Test Helper` is easy to use; all you need to be aware of when us
 <dependency>
   <groupId>org.thinkit.test.util</groupId>
   <artifactId>reflection-test-helper</artifactId>
-  <version>v1.0.3</version>
+  <version>v1.0.4</version>
 </dependency>
 
 <servers>
@@ -73,7 +75,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.thinkit.test.util:reflection-test-helper:v1.0.3'
+    implementation 'org.thinkit.test.util:reflection-test-helper:v1.0.4'
 }
 ```
 
