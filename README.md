@@ -7,19 +7,21 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 **Table of Contents**
 
-- [What is it?](#what-is-it)
-- [How To Use](#how-to-use)
-  - [1. Add the dependencies](#1-add-the-dependencies)
-  - [2. Import `Reflection Test Helper`](#2-import-reflection-test-helper)
-  - [3. Create new instance of `ReflectionTestHelper`](#3-create-new-instance-of-reflectiontesthelper)
-  - [4. Invoke method](#4-invoke-method)
-  - [5. Invoke method with the argument](#5-invoke-method-with-the-argument)
-  - [6. Invoke method with the field value](#6-invoke-method-with-the-field-value)
-  - [7. If you want to get the value of a specific field in the SUT](#7-if-you-want-to-get-the-value-of-a-specific-field-in-the-sut)
-- [License](#license)
-- [More Information](#more-information)
+- [Reflection Test Helper](#reflection-test-helper)
+  - [What is it?](#what-is-it)
+  - [How To Use](#how-to-use)
+    - [1. Add the dependencies](#1-add-the-dependencies)
+    - [2. Import `Reflection Test Helper`](#2-import-reflection-test-helper)
+    - [3. Create new instance of `ReflectionTestHelper`](#3-create-new-instance-of-reflectiontesthelper)
+    - [4. Invoke method](#4-invoke-method)
+    - [5. Invoke method with the argument](#5-invoke-method-with-the-argument)
+    - [6. Invoke method with the field value](#6-invoke-method-with-the-field-value)
+    - [7. If you want to get the value of a specific field in the SUT](#7-if-you-want-to-get-the-value-of-a-specific-field-in-the-sut)
+  - [License](#license)
+  - [More Information](#more-information)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -28,6 +30,9 @@
 The `Reflection Test Helper` was designed and implemented to provide a simple and cool way to write reflections, which are verbose and relatively difficult to implement. This feature is especially useful when testing a specific class with limited access features such as private access modifiers.
 
 The `Reflection Test Helper` is easy to use; all you need to be aware of when using it is the class in which the method to be reflected is defined, and the name and arguments of the method to be invoked in the reflection.
+
+> **_Note:_**</br>
+> In the description that follows, you will see the keyword `SUT`, which is an abbreviation for `System Under Test` and represents the object to be tested.
 
 ## How To Use
 
@@ -41,7 +46,7 @@ The `Reflection Test Helper` is easy to use; all you need to be aware of when us
 
 ```xml
 <dependency>
-  <groupId>org.thinkit.framework.content</groupId>
+  <groupId>org.thinkit.test.util</groupId>
   <artifactId>reflection-test-helper</artifactId>
   <version>v1.0.3</version>
 </dependency>
@@ -134,7 +139,7 @@ final String result = reflectionTestHelper.invokeMethod("methodName");
 
 ### 7. If you want to get the value of a specific field in the SUT
 
-The `ReflectionTestHelper` also provides the feature to return the specific field value from the target class.
+The `ReflectionTestHelper` also provides the feature to return the specific field value from the SUT.
 
 ```java
 // Specify the name of the field
