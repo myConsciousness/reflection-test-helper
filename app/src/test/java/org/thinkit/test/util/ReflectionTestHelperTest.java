@@ -41,7 +41,7 @@ public final class ReflectionTestHelperTest {
     @Test
     void testConstructor() {
 
-        final ReflectionTestHelper<String> sut = ReflectionTestHelper.from(String.class);
+        final ReflectionTestHelper<String, String> sut = ReflectionTestHelper.from(String.class);
         assertNotNull(sut);
 
         try {

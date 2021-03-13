@@ -53,7 +53,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnStringWithNoArgument() {
-            final ReflectionMethod<String> sut = ReflectionMethod.from(ReflectionTestDataSet.class);
+            final ReflectionMethod<ReflectionTestDataSet, String> sut = ReflectionMethod
+                    .from(new ReflectionTestDataSet());
             final String actual = sut.invokeMethod(TestMethod.RETURN_STRING_WITH_NO_ARGUMENT.getName());
 
             assertNotNull(actual);
@@ -63,7 +64,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnStringSuccessWithArgument() {
-            final ReflectionMethod<String> sut = ReflectionMethod.from(ReflectionTestDataSet.class);
+            final ReflectionMethod<ReflectionTestDataSet, String> sut = ReflectionMethod
+                    .from(new ReflectionTestDataSet());
             final String actual = sut.addArgument(String.class, "test")
                     .invokeMethod(TestMethod.RETURN_STRING_WITH_ARGUMENT.getName());
 
@@ -74,7 +76,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnStringFailureWithArgument() {
-            final ReflectionMethod<String> sut = ReflectionMethod.from(ReflectionTestDataSet.class);
+            final ReflectionMethod<ReflectionTestDataSet, String> sut = ReflectionMethod
+                    .from(new ReflectionTestDataSet());
             final String actual = sut.addArgument(String.class, "")
                     .invokeMethod(TestMethod.RETURN_STRING_WITH_ARGUMENT.getName());
 
@@ -85,7 +88,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnStringWithArguments() {
-            final ReflectionMethod<String> sut = ReflectionMethod.from(ReflectionTestDataSet.class);
+            final ReflectionMethod<ReflectionTestDataSet, String> sut = ReflectionMethod
+                    .from(new ReflectionTestDataSet());
             sut.addArgument(String.class, "").addArgument(int.class, 0).addArgument(boolean.class, true);
             final String actual = sut.invokeMethod(TestMethod.RETURN_STRING_WITH_ARGUMENTS.getName());
 
@@ -96,7 +100,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnIntegerWithNoArgument() {
-            final ReflectionMethod<Integer> sut = ReflectionMethod.from(ReflectionTestDataSet.class);
+            final ReflectionMethod<ReflectionTestDataSet, Integer> sut = ReflectionMethod
+                    .from(new ReflectionTestDataSet());
             final int actual = sut.invokeMethod(TestMethod.RETURN_INTEGER_WITH_NO_ARGUMENT.getName());
 
             assertEquals(1, actual);
@@ -104,7 +109,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnIntegerTrueWithArgument() {
-            final ReflectionMethod<Integer> sut = ReflectionMethod.from(ReflectionTestDataSet.class);
+            final ReflectionMethod<ReflectionTestDataSet, Integer> sut = ReflectionMethod
+                    .from(new ReflectionTestDataSet());
             final int actual = sut.addArgument(boolean.class, true)
                     .invokeMethod(TestMethod.RETURN_INTEGER_WITH_ARGUMENT.getName());
 
@@ -113,7 +119,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnIntegerFalseWithArgument() {
-            final ReflectionMethod<Integer> sut = ReflectionMethod.from(ReflectionTestDataSet.class);
+            final ReflectionMethod<ReflectionTestDataSet, Integer> sut = ReflectionMethod
+                    .from(new ReflectionTestDataSet());
             final int actual = sut.addArgument(boolean.class, false)
                     .invokeMethod(TestMethod.RETURN_INTEGER_WITH_ARGUMENT.getName());
 
@@ -122,7 +129,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnIntegerWithArguments() {
-            final ReflectionMethod<Integer> sut = ReflectionMethod.from(ReflectionTestDataSet.class);
+            final ReflectionMethod<ReflectionTestDataSet, Integer> sut = ReflectionMethod
+                    .from(new ReflectionTestDataSet());
             sut.addArgument(int.class, 1).addArgument(String.class, "test").addArgument(boolean.class, false);
             final int actual = sut.invokeMethod(TestMethod.RETURN_INTEGER_WITH_ARGUMENTS.getName());
 
@@ -131,7 +139,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnBooleanWithNoArgument() {
-            final ReflectionMethod<Boolean> sut = ReflectionMethod.from(ReflectionTestDataSet.class);
+            final ReflectionMethod<ReflectionTestDataSet, Boolean> sut = ReflectionMethod
+                    .from(new ReflectionTestDataSet());
             final boolean actual = sut.invokeMethod(TestMethod.RETURN_BOOLEAN_WITH_NO_ARGUMENT.getName());
 
             assertEquals(true, actual);
@@ -139,7 +148,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnBooleanTrueWithArgument() {
-            final ReflectionMethod<Boolean> sut = ReflectionMethod.from(ReflectionTestDataSet.class);
+            final ReflectionMethod<ReflectionTestDataSet, Boolean> sut = ReflectionMethod
+                    .from(new ReflectionTestDataSet());
             final boolean actual = sut.addArgument(int.class, 1)
                     .invokeMethod(TestMethod.RETURN_BOOLEAN_WITH_ARGUMENT.getName());
 
@@ -148,7 +158,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnBooleanFalseWithArgument() {
-            final ReflectionMethod<Boolean> sut = ReflectionMethod.from(ReflectionTestDataSet.class);
+            final ReflectionMethod<ReflectionTestDataSet, Boolean> sut = ReflectionMethod
+                    .from(new ReflectionTestDataSet());
             final boolean actual = sut.addArgument(int.class, 0)
                     .invokeMethod(TestMethod.RETURN_BOOLEAN_WITH_ARGUMENT.getName());
 
@@ -157,7 +168,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnBooleanWithArguments() {
-            final ReflectionMethod<Boolean> sut = ReflectionMethod.from(ReflectionTestDataSet.class);
+            final ReflectionMethod<ReflectionTestDataSet, Boolean> sut = ReflectionMethod
+                    .from(new ReflectionTestDataSet());
             sut.addArgument(int.class, 0).addArgument(String.class, "test").addArgument(boolean.class, true);
             final boolean actual = sut.invokeMethod(TestMethod.RETURN_BOOLEAN_WITH_ARGUMENTS.getName());
 
@@ -166,7 +178,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnListWithArguments() {
-            final ReflectionMethod<List<String>> sut = ReflectionMethod.from(ReflectionTestDataSet.class);
+            final ReflectionMethod<ReflectionTestDataSet, List<String>> sut = ReflectionMethod
+                    .from(new ReflectionTestDataSet());
             final String[] expectedSequences = new String[] { "test6", "test1", "test100" };
 
             for (String expectedSequence : expectedSequences) {
@@ -187,7 +200,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnMapWithArguments() {
-            final ReflectionMethod<Map<String, Integer>> sut = ReflectionMethod.from(ReflectionTestDataSet.class);
+            final ReflectionMethod<ReflectionTestDataSet, Map<String, Integer>> sut = ReflectionMethod
+                    .from(new ReflectionTestDataSet());
             final int[] expectedNumbers = new int[] { 100, 1000, 1 };
 
             for (Integer expectedSequence : expectedNumbers) {
@@ -222,7 +236,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnStringWithNoArgument() {
-            final ReflectionMethod<String> sut = ReflectionMethod.from(ReflectionStaticTestDataSet.class);
+            final ReflectionMethod<ReflectionStaticTestDataSet, String> sut = ReflectionMethod
+                    .from(new ReflectionStaticTestDataSet());
             final String actual = sut.invokeMethod(TestMethod.RETURN_STRING_WITH_NO_ARGUMENT.getName());
 
             assertNotNull(actual);
@@ -232,7 +247,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnStringSuccessWithArgument() {
-            final ReflectionMethod<String> sut = ReflectionMethod.from(ReflectionStaticTestDataSet.class);
+            final ReflectionMethod<ReflectionStaticTestDataSet, String> sut = ReflectionMethod
+                    .from(new ReflectionStaticTestDataSet());
             final String actual = sut.addArgument(String.class, "test")
                     .invokeMethod(TestMethod.RETURN_STRING_WITH_ARGUMENT.getName());
 
@@ -243,7 +259,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnStringFailureWithArgument() {
-            final ReflectionMethod<String> sut = ReflectionMethod.from(ReflectionStaticTestDataSet.class);
+            final ReflectionMethod<ReflectionStaticTestDataSet, String> sut = ReflectionMethod
+                    .from(new ReflectionStaticTestDataSet());
             final String actual = sut.addArgument(String.class, "")
                     .invokeMethod(TestMethod.RETURN_STRING_WITH_ARGUMENT.getName());
 
@@ -254,7 +271,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnStringWithArguments() {
-            final ReflectionMethod<String> sut = ReflectionMethod.from(ReflectionStaticTestDataSet.class);
+            final ReflectionMethod<ReflectionStaticTestDataSet, String> sut = ReflectionMethod
+                    .from(new ReflectionStaticTestDataSet());
             sut.addArgument(String.class, "").addArgument(int.class, 0).addArgument(boolean.class, true);
             final String actual = sut.invokeMethod(TestMethod.RETURN_STRING_WITH_ARGUMENTS.getName());
 
@@ -265,7 +283,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnIntegerWithNoArgument() {
-            final ReflectionMethod<Integer> sut = ReflectionMethod.from(ReflectionStaticTestDataSet.class);
+            final ReflectionMethod<ReflectionStaticTestDataSet, Integer> sut = ReflectionMethod
+                    .from(new ReflectionStaticTestDataSet());
             final int actual = sut.invokeMethod(TestMethod.RETURN_INTEGER_WITH_NO_ARGUMENT.getName());
 
             assertEquals(1, actual);
@@ -273,7 +292,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnIntegerTrueWithArgument() {
-            final ReflectionMethod<Integer> sut = ReflectionMethod.from(ReflectionStaticTestDataSet.class);
+            final ReflectionMethod<ReflectionStaticTestDataSet, Integer> sut = ReflectionMethod
+                    .from(new ReflectionStaticTestDataSet());
             final int actual = sut.addArgument(boolean.class, true)
                     .invokeMethod(TestMethod.RETURN_INTEGER_WITH_ARGUMENT.getName());
 
@@ -282,7 +302,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnIntegerFalseWithArgument() {
-            final ReflectionMethod<Integer> sut = ReflectionMethod.from(ReflectionStaticTestDataSet.class);
+            final ReflectionMethod<ReflectionStaticTestDataSet, Integer> sut = ReflectionMethod
+                    .from(new ReflectionStaticTestDataSet());
             final int actual = sut.addArgument(boolean.class, false)
                     .invokeMethod(TestMethod.RETURN_INTEGER_WITH_ARGUMENT.getName());
 
@@ -291,7 +312,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnIntegerWithArguments() {
-            final ReflectionMethod<Integer> sut = ReflectionMethod.from(ReflectionStaticTestDataSet.class);
+            final ReflectionMethod<ReflectionStaticTestDataSet, Integer> sut = ReflectionMethod
+                    .from(new ReflectionStaticTestDataSet());
             sut.addArgument(int.class, 1).addArgument(String.class, "test").addArgument(boolean.class, false);
             final int actual = sut.invokeMethod(TestMethod.RETURN_INTEGER_WITH_ARGUMENTS.getName());
 
@@ -300,7 +322,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnBooleanWithNoArgument() {
-            final ReflectionMethod<Boolean> sut = ReflectionMethod.from(ReflectionStaticTestDataSet.class);
+            final ReflectionMethod<ReflectionStaticTestDataSet, Boolean> sut = ReflectionMethod
+                    .from(new ReflectionStaticTestDataSet());
             final boolean actual = sut.invokeMethod(TestMethod.RETURN_BOOLEAN_WITH_NO_ARGUMENT.getName());
 
             assertEquals(true, actual);
@@ -308,7 +331,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnBooleanTrueWithArgument() {
-            final ReflectionMethod<Boolean> sut = ReflectionMethod.from(ReflectionStaticTestDataSet.class);
+            final ReflectionMethod<ReflectionStaticTestDataSet, Boolean> sut = ReflectionMethod
+                    .from(new ReflectionStaticTestDataSet());
             final boolean actual = sut.addArgument(int.class, 1)
                     .invokeMethod(TestMethod.RETURN_BOOLEAN_WITH_ARGUMENT.getName());
 
@@ -317,7 +341,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnBooleanFalseWithArgument() {
-            final ReflectionMethod<Boolean> sut = ReflectionMethod.from(ReflectionStaticTestDataSet.class);
+            final ReflectionMethod<ReflectionStaticTestDataSet, Boolean> sut = ReflectionMethod
+                    .from(new ReflectionStaticTestDataSet());
             final boolean actual = sut.addArgument(int.class, 0)
                     .invokeMethod(TestMethod.RETURN_BOOLEAN_WITH_ARGUMENT.getName());
 
@@ -326,7 +351,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnBooleanWithArguments() {
-            final ReflectionMethod<Boolean> sut = ReflectionMethod.from(ReflectionStaticTestDataSet.class);
+            final ReflectionMethod<ReflectionStaticTestDataSet, Boolean> sut = ReflectionMethod
+                    .from(new ReflectionStaticTestDataSet());
             sut.addArgument(int.class, 0).addArgument(String.class, "test").addArgument(boolean.class, true);
             final boolean actual = sut.invokeMethod(TestMethod.RETURN_BOOLEAN_WITH_ARGUMENTS.getName());
 
@@ -335,7 +361,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnListWithArguments() {
-            final ReflectionMethod<List<String>> sut = ReflectionMethod.from(ReflectionStaticTestDataSet.class);
+            final ReflectionMethod<ReflectionStaticTestDataSet, List<String>> sut = ReflectionMethod
+                    .from(new ReflectionStaticTestDataSet());
             final String[] expectedSequences = new String[] { "test6", "test1", "test100" };
 
             for (String expectedSequence : expectedSequences) {
@@ -356,7 +383,8 @@ public final class ReflectionMethodTest {
 
         @Test
         void testReturnMapWithArguments() {
-            final ReflectionMethod<Map<String, Integer>> sut = ReflectionMethod.from(ReflectionStaticTestDataSet.class);
+            final ReflectionMethod<ReflectionStaticTestDataSet, Map<String, Integer>> sut = ReflectionMethod
+                    .from(new ReflectionStaticTestDataSet());
             final int[] expectedNumbers = new int[] { 100, 1000, 1 };
 
             for (Integer expectedSequence : expectedNumbers) {
@@ -393,7 +421,8 @@ public final class ReflectionMethodTest {
         @Test
         void testSimplePattern() {
 
-            final ReflectionMethod<String> sut = ReflectionMethod.from(ReflectionTestDataSet.class);
+            final ReflectionMethod<ReflectionTestDataSet, String> sut = ReflectionMethod
+                    .from(new ReflectionTestDataSet());
             final String actual = sut.addArgument(String.class, "test")
                     .invokeMethod(TestMethod.RETURN_STRING_WITH_ARGUMENT.getName());
 
@@ -405,7 +434,8 @@ public final class ReflectionMethodTest {
         @Test
         void testMethodChainPattern() {
 
-            final ReflectionMethod<String> sut = ReflectionMethod.from(ReflectionTestDataSet.class);
+            final ReflectionMethod<ReflectionTestDataSet, String> sut = ReflectionMethod
+                    .from(new ReflectionTestDataSet());
             final String actual = sut.addArgument(String.class, "test").addArgument(int.class, 0)
                     .addArgument(boolean.class, true).invokeMethod(TestMethod.RETURN_STRING_WITH_ARGUMENTS.getName());
 

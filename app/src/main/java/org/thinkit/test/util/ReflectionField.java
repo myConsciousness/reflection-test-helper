@@ -34,7 +34,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PROTECTED, staticName = "from")
-final class ReflectionField implements Serializable {
+final class ReflectionField<T> implements Serializable {
 
     /**
      * The serial version UID
@@ -42,9 +42,9 @@ final class ReflectionField implements Serializable {
     private static final long serialVersionUID = 2195533227298076362L;
 
     /**
-     * The class
+     * The sut instance
      */
-    private Class<?> clazz;
+    private T sutInstance;
 
     /**
      * Set {@code fieldValue} to the field associated with {@code fieldName}
@@ -58,9 +58,7 @@ final class ReflectionField implements Serializable {
     protected void setFieldValue(@NonNull final String fieldName, final Object fieldValue) {
 
         try {
-            final Field field = this.clazz.getDeclaredField(fieldName);
-            field.setAccessible(true);
-            field.set(this.clazz, fieldValue);
+            this.getDeclaredField(fieldName).set(this.sutInstance, fieldValue);
         } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
             throw new IllegalStateException(e);
         }
@@ -77,10 +75,15 @@ final class ReflectionField implements Serializable {
      */
     protected Object getFieldValue(@NonNull final String fieldName) {
         try {
-            final Field field = this.clazz.getDeclaredField(fieldName);
-            return field.get(this.clazz);
+            return this.getDeclaredField(fieldName).get(this.sutInstance);
         } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
             throw new IllegalStateException(e);
         }
+    }
+
+    private Field getDeclaredField(@NonNull final String fieldName) throws NoSuchFieldException, SecurityException {
+        final Field field = this.sutInstance.getClass().getDeclaredField(fieldName);
+        field.setAccessible(true);
+        return field;
     }
 }
