@@ -48,7 +48,7 @@ import lombok.ToString;
  * values that need to be set.
  *
  * <p>
- * More details are here.
+ * More details are at
  * https://github.com/myConsciousness/reflection-test-helper/blob/main/README.md
  *
  * @author Kato Shinya
