@@ -33,8 +33,8 @@ import lombok.ToString;
  * When creating a new instance of the {@link ReflectionTestHelper} class, pass
  * the class information of the class in which the method to be invoked is
  * defined to the {@link #from(Class)} method. The generic type of the
- * {@link ReflectionTestHelper} class should be the type returned by the method
- * to be invoked.
+ * {@link ReflectionTestHelper} class should be the type of SUT and the type
+ * returned by the method to be invoked.
  *
  * <p>
  * Then you can execute the target method by creating a new instance of
@@ -46,6 +46,10 @@ import lombok.ToString;
  * If the method to be invoked requires the specification of arguments, call the
  * {@link #addArgument(Class, Object)} method and add the argument types and
  * values that need to be set.
+ *
+ * <p>
+ * More details here.
+ * https://github.com/myConsciousness/reflection-test-helper/blob/main/README.md
  *
  * @author Kato Shinya
  * @since 1.0.0
