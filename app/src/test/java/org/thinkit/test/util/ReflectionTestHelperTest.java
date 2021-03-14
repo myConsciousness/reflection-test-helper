@@ -39,9 +39,32 @@ public final class ReflectionTestHelperTest {
     private static final String FIELD_NAME_REFLECTION_METHOD = "reflectionMethod";
 
     @Test
-    void testConstructor() {
+    void testWhenConstructorIsPublic() {
 
         final ReflectionTestHelper<String, String> sut = ReflectionTestHelper.from(String.class);
+        assertNotNull(sut);
+
+        try {
+            final Class<?> clazz = sut.getClass();
+            final Field reflectionField = clazz.getDeclaredField(FILED_NAME_REFLECTION_FIELD);
+            final Field reflectionMethod = clazz.getDeclaredField(FIELD_NAME_REFLECTION_METHOD);
+
+            reflectionField.setAccessible(true);
+            reflectionMethod.setAccessible(true);
+
+            assertNotNull(reflectionField.get(sut));
+            assertNotNull(reflectionMethod.get(sut));
+
+        } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testWhenConstructorIsPrivate() {
+
+        final ReflectionTestHelper<ReflectionTestWithPrivateConstructor, String> sut = ReflectionTestHelper
+                .from(ReflectionTestWithPrivateConstructor.class);
         assertNotNull(sut);
 
         try {

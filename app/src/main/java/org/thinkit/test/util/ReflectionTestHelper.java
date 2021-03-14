@@ -15,6 +15,7 @@
 package org.thinkit.test.util;
 
 import java.io.Serializable;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 import lombok.AccessLevel;
@@ -216,6 +217,8 @@ public final class ReflectionTestHelper<T, R> implements Serializable {
     @SuppressWarnings("unchecked")
     private T getSutInstance(@NonNull final Class<?> clazz) throws InstantiationException, IllegalAccessException,
             IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-        return (T) clazz.getDeclaredConstructor().newInstance();
+        final Constructor<T> constructor = (Constructor<T>) clazz.getDeclaredConstructor();
+        constructor.setAccessible(true);
+        return constructor.newInstance();
     }
 }
